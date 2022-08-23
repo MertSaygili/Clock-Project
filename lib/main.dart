@@ -1,4 +1,5 @@
-import 'package:clock_project/ui/view/clock_page.dart';
+import 'package:clock_project/styles/theme/custom_light_theme.dart';
+import 'package:clock_project/ui/view/home.dart';
 import 'package:flutter/material.dart';
 
 // timezone->https://pub.dev/packages/timezone
@@ -16,10 +17,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Clock App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const ClockPageView(),
+      theme: CustomLightTheme().theme,
+      home: const HomeView(),
     );
   }
 }

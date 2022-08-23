@@ -5,14 +5,14 @@ import 'package:clock_project/time/time.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class ClockPageView extends StatefulWidget {
-  const ClockPageView({Key? key}) : super(key: key);
+class ClockView extends StatefulWidget {
+  const ClockView({Key? key}) : super(key: key);
 
   @override
-  State<ClockPageView> createState() => _ClockPageViewState();
+  State<ClockView> createState() => _ClockViewState();
 }
 
-class _ClockPageViewState extends State<ClockPageView> with Time {
+class _ClockViewState extends State<ClockView> with Time {
   final DateFormat f = DateFormat('Hms');
   late String _now;
   late Timer _everySecond;
