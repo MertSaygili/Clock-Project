@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 class IconItems {
-  final Icon nullIcon = const Icon(Icons.noise_control_off, size: 0);
+  final Icon nullIcon = const Icon(Icons.noise_control_off, size: 1);
 }
 
 class FontSizes {

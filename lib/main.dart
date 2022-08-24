@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Clock App',
       theme: customTheme(),
-      home: const HomeView(),
+      home: const HomePageView(),
     );
   }
 }

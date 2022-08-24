@@ -1,72 +1,105 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:clock_project/constants/constants.dart';
+import 'package:clock_project/ui/view/clock_view.dart';
 import 'package:flutter/material.dart';
 
-class HomeView extends StatefulWidget {
-  const HomeView({Key? key}) : super(key: key);
+class HomePageView extends StatefulWidget {
+  const HomePageView({Key? key}) : super(key: key);
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  State<HomePageView> createState() => _HomePageViewState();
 }
 
-class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
-  late final TabController _controller;
+class _HomePageViewState extends State<HomePageView> {
+  late final PageController _controller;
+  final String _textAlarm = 'Alarm';
+  final String _textSaat = 'Saat';
+  final String _textKronometre = 'Kronometre';
+  final String _textZamanlayici = 'Zamanlayici';
+  final double _elevation = 20;
   int _currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    _controller = TabController(length: TabBarItems.values.length, vsync: this);
+    _controller = PageController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final _textTheme = Theme.of(context).textTheme;
-    final _colorScheme = Theme.of(context).colorScheme;
-
     return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        backgroundColor: _colorScheme.surface,
-        selectedItemColor: _colorScheme.onSurface,
-        unselectedItemColor: _colorScheme.onSurface.withOpacity(.60),
-        selectedLabelStyle: _textTheme.caption,
-        unselectedLabelStyle: _textTheme.caption,
-        onTap: (value) {
-          setState(() => _currentIndex = value);
-        },
-        items: const [
-          BottomNavigationBarItem(
-            label: 'Favorites',
-            icon: Icon(Icons.favorite),
-          ),
-          BottomNavigationBarItem(
-            label: 'Music',
-            icon: Icon(Icons.music_note),
-          ),
-          BottomNavigationBarItem(
-            label: 'Places',
-            icon: Icon(Icons.location_on),
-          ),
-          BottomNavigationBarItem(
-            label: 'News',
-            icon: Icon(Icons.library_books),
-          ),
-        ],
-      ),
-      body: TabBarView(
-        controller: _controller,
-        children: const [
-          Text('asdas'),
-          Text('asdas'),
-          Text('asdas'),
-          Text('asdas'),
-        ],
-      ),
+      bottomNavigationBar: _bottomNavigationBar(),
+      body: _tabBarView(),
     );
+  }
+
+  PageView _tabBarView() {
+    return PageView(
+      controller: _controller,
+      physics: const NeverScrollableScrollPhysics(),
+      onPageChanged: _setNewPage,
+      children: const [
+        Text('sss'),
+        ClockPageView(),
+        Text('asdas'),
+        Text('asdas'),
+      ],
+    );
+  }
+
+  BottomNavigationBar _bottomNavigationBar() {
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
+    return BottomNavigationBar(
+      currentIndex: _currentIndex,
+      elevation: _elevation,
+      type: BottomNavigationBarType.shifting,
+      enableFeedback: true,
+      showSelectedLabels: true,
+      showUnselectedLabels: true,
+      backgroundColor: colorScheme.surface,
+      selectedItemColor: colorScheme.onSurface,
+      unselectedItemColor: colorScheme.onSurface.withOpacity(.70),
+      selectedLabelStyle: textTheme.caption,
+      unselectedLabelStyle: textTheme.caption,
+      onTap: _onTap,
+      items: [
+        _bottomNavigationBarItem(_textAlarm),
+        _bottomNavigationBarItem(_textSaat),
+        _bottomNavigationBarItem(_textKronometre),
+        _bottomNavigationBarItem(_textZamanlayici),
+      ],
+    );
+  }
+
+  BottomNavigationBarItem _bottomNavigationBarItem(String text) {
+    return BottomNavigationBarItem(
+      label: text,
+      icon: IconItems().nullIcon,
+    );
+  }
+
+  void _onTap(int index) {
+    _controller.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.bounceInOut,
+    );
+  }
+
+  void _setNewPage(int index) {
+    setState(() => _currentIndex = index);
   }
 }
 
-enum TabBarItems { Alarm, DunyaSaati, Kronometre, Zamanlayici }
+enum TabBarItems { Alarm, Saat, Kronometre, Zamanlayici }
 
 extension TabBarExtension on TabBarItems {}
