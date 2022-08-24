@@ -31,33 +31,48 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle.light,
-        elevation: _elevation,
-        backgroundColor: Colors.white,
-        toolbarHeight: MediaQuery.of(context).size.height / 3,
-        title: Text(
-          _now,
-          style: Theme.of(context).textTheme.headline1,
+      body: Padding(
+        padding: _paddignItems.paddingScreen,
+        child: Column(
+          children: [
+            Expanded(
+              flex: 2,
+              child: ListView(
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    color: Colors.red,
+                    child: Text(
+                      _now,
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.add),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.format_list_bulleted_outlined),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              flex: 4,
+              child: ListView.builder(
+                itemBuilder: ((context, index) {
+                  return Text('s');
+                }),
+              ),
+            ),
+          ],
         ),
-        centerTitle: true,
-        actions: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              IconButton(onPressed: () {}, icon: const Icon(Icons.add)),
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.format_list_bulleted_outlined)),
-            ],
-          ),
-        ],
-      ),
-      body: ListView.builder(
-        itemCount: 12,
-        itemBuilder: ((context, index) {
-          return Text('S');
-        }),
       ),
     );
   }
