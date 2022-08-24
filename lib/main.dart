@@ -1,5 +1,5 @@
 import 'package:clock_project/styles/theme/custom_theme.dart';
-import 'package:clock_project/ui/view/home.dart';
+import 'package:clock_project/ui/view/home_page.dart';
 import 'package:flutter/material.dart';
 
 // timezone->https://pub.dev/packages/timezone

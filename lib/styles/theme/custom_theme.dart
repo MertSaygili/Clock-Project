@@ -14,6 +14,10 @@ ThemeData customTheme() {
 TextTheme _textTheme(TextTheme textTheme, FontSizes fontSizes) {
   return textTheme
       .copyWith(
+        headline1: textTheme.headline1?.copyWith(
+          fontWeight: FontWeight.w400,
+          fontSize: fontSizes.sizeMaxXX,
+        ),
         caption: textTheme.caption?.copyWith(
           fontWeight: FontWeight.w500,
           fontSize: fontSizes.sizeMin,

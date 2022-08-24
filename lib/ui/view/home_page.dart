@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:clock_project/constants/constants.dart';
-import 'package:clock_project/ui/view/clock_view.dart';
+import 'package:clock_project/ui/view/clock_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePageView extends StatefulWidget {
