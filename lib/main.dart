@@ -1,4 +1,4 @@
-import 'package:clock_project/styles/theme/custom_light_theme.dart';
+import 'package:clock_project/styles/theme/custom_theme.dart';
 import 'package:clock_project/ui/view/home.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Clock App',
-      theme: CustomLightTheme().theme,
+      theme: customTheme(),
       home: const HomeView(),
     );
   }

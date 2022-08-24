@@ -19,10 +19,8 @@ class _ClockViewState extends State<ClockView> with Time {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text(_now),
-      ),
+    return Center(
+      child: Text(_now),
     );
   }
 
@@ -33,6 +31,7 @@ class _ClockViewState extends State<ClockView> with Time {
     updateTime();
   }
 
+  // current time functions
   @override
   setTime() {
     _now = f.format(DateTime.now()).toString();

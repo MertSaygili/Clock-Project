@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -7,67 +9,64 @@ class HomeView extends StatefulWidget {
   State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
-  late final PageController _controller;
+class _HomeViewState extends State<HomeView> with TickerProviderStateMixin {
+  late final TabController _controller;
   int _currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    _setController();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
-  }
-
-  void _setController() {
-    _controller = PageController();
+    _controller = TabController(length: TabBarItems.values.length, vsync: this);
   }
 
   @override
   Widget build(BuildContext context) {
+    final _textTheme = Theme.of(context).textTheme;
+    final _colorScheme = Theme.of(context).colorScheme;
+
     return Scaffold(
-      body: _pageView(),
-      bottomNavigationBar: _bottomNavigationBar(),
-    );
-  }
-
-  PageView _pageView() {
-    return PageView(
-      controller: _controller,
-      onPageChanged: _setNewPage,
-      children: const [
-        Text('sad'),
-        Text('sad'),
-      ],
-    );
-  }
-
-  BottomNavigationBar _bottomNavigationBar() {
-    return BottomNavigationBar(
-      currentIndex: _currentIndex,
-      onTap: _onTap,
-      items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.abc), label: ''),
-        BottomNavigationBarItem(icon: Icon(Icons.save), label: ''),
-      ],
-    );
-  }
-
-  void _setNewPage(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
-  void _onTap(int newIndex) {
-    _controller.animateToPage(
-      newIndex,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeIn,
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        backgroundColor: _colorScheme.surface,
+        selectedItemColor: _colorScheme.onSurface,
+        unselectedItemColor: _colorScheme.onSurface.withOpacity(.60),
+        selectedLabelStyle: _textTheme.caption,
+        unselectedLabelStyle: _textTheme.caption,
+        onTap: (value) {
+          setState(() => _currentIndex = value);
+        },
+        items: const [
+          BottomNavigationBarItem(
+            label: 'Favorites',
+            icon: Icon(Icons.favorite),
+          ),
+          BottomNavigationBarItem(
+            label: 'Music',
+            icon: Icon(Icons.music_note),
+          ),
+          BottomNavigationBarItem(
+            label: 'Places',
+            icon: Icon(Icons.location_on),
+          ),
+          BottomNavigationBarItem(
+            label: 'News',
+            icon: Icon(Icons.library_books),
+          ),
+        ],
+      ),
+      body: TabBarView(
+        controller: _controller,
+        children: const [
+          Text('asdas'),
+          Text('asdas'),
+          Text('asdas'),
+          Text('asdas'),
+        ],
+      ),
     );
   }
 }
+
+enum TabBarItems { Alarm, DunyaSaati, Kronometre, Zamanlayici }
+
+extension TabBarExtension on TabBarItems {}
