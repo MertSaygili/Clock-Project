@@ -4,4 +4,7 @@ abstract class Time {
 
   // updates time
   updateTime();
+
+  // disposes timer
+  disposeTimer();
 }

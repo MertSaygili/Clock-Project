@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'package:clock_project/constants/constants.dart';
 import 'package:clock_project/time/time.dart';
+import 'package:clock_project/ui/widgets/custom_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -29,6 +30,12 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    disposeTimer();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
@@ -39,12 +46,14 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
               flex: 2,
               child: ListView(
                 children: [
-                  Container(
-                    alignment: Alignment.center,
-                    color: Colors.red,
-                    child: Text(
-                      _now,
-                      style: Theme.of(context).textTheme.headline1,
+                  Padding(
+                    padding: _paddignItems.paddingTimer,
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        _now,
+                        style: Theme.of(context).textTheme.headline1,
+                      ),
                     ),
                   ),
                   Row(
@@ -52,23 +61,34 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
                     children: [
                       IconButton(
                         onPressed: () {},
-                        icon: const Icon(Icons.add),
+                        icon: IconItems().addIcon,
                       ),
                       IconButton(
                         onPressed: () {},
-                        icon: const Icon(Icons.format_list_bulleted_outlined),
+                        icon: IconItems().settingsIcon,
                       ),
                     ],
+                  ),
+                  const Divider(
+                    thickness: 2,
                   )
                 ],
               ),
             ),
             Expanded(
-              flex: 4,
-              child: ListView.builder(
-                itemBuilder: ((context, index) {
-                  return Text('s');
-                }),
+              flex: 3,
+              child: Padding(
+                padding: PaddignItems().paddingCard,
+                child: ListView.builder(
+                  itemCount: 3,
+                  itemBuilder: ((context, index) {
+                    return const CustomCard(
+                      title: 'Sabah alarmi',
+                      clock: '18:20',
+                      days: ['Persembe', 'Cuma'],
+                    );
+                  }),
+                ),
               ),
             ),
           ],
@@ -90,5 +110,10 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
         setTime();
       });
     });
+  }
+
+  @override
+  disposeTimer() {
+    _everySecond.cancel();
   }
 }

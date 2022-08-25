@@ -7,16 +7,27 @@ ThemeData customTheme() {
   final FontSizes fontSizes = FontSizes();
 
   return theme.copyWith(
-      textTheme: _textTheme(theme.textTheme, fontSizes),
-      colorScheme: _colorScheme);
+    textTheme: _textTheme(theme.textTheme, fontSizes),
+    colorScheme: _colorScheme,
+  );
 }
 
 TextTheme _textTheme(TextTheme textTheme, FontSizes fontSizes) {
   return textTheme
       .copyWith(
         headline1: textTheme.headline1?.copyWith(
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w500,
           fontSize: fontSizes.sizeMaxXX,
+        ),
+        headline3: textTheme.headline3?.copyWith(
+          fontWeight: FontWeight.w400,
+          fontSize: fontSizes.sizeNormal,
+          letterSpacing: 0,
+        ),
+        headline6: textTheme.headline6?.copyWith(
+          fontWeight: FontWeight.w400,
+          fontSize: fontSizes.sizeMin,
+          letterSpacing: 0,
         ),
         caption: textTheme.caption?.copyWith(
           fontWeight: FontWeight.w500,
