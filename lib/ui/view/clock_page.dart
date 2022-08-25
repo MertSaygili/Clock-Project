@@ -83,9 +83,9 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
                   itemCount: 3,
                   itemBuilder: ((context, index) {
                     return const CustomCard(
-                      title: 'Sabah alarmi',
+                      city: 'Istanbul',
                       clock: '18:20',
-                      days: ['Persembe', 'Cuma'],
+                      info: 'Yerel saat dilimi',
                     );
                   }),
                 ),

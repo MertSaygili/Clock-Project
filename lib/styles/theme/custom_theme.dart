@@ -19,12 +19,16 @@ TextTheme _textTheme(TextTheme textTheme, FontSizes fontSizes) {
           fontWeight: FontWeight.w500,
           fontSize: fontSizes.sizeMaxXX,
         ),
+        headline2: textTheme.headline2?.copyWith(
+          fontWeight: FontWeight.w500,
+          fontSize: fontSizes.sizeMax,
+        ),
         headline3: textTheme.headline3?.copyWith(
           fontWeight: FontWeight.w400,
           fontSize: fontSizes.sizeNormal,
           letterSpacing: 0,
         ),
-        headline6: textTheme.headline6?.copyWith(
+        subtitle2: textTheme.subtitle2?.copyWith(
           fontWeight: FontWeight.w400,
           fontSize: fontSizes.sizeMin,
           letterSpacing: 0,
@@ -41,7 +45,7 @@ TextTheme _textTheme(TextTheme textTheme, FontSizes fontSizes) {
       .apply(
         fontFamily: 'RobotoMono',
         displayColor: colorDark900,
-        bodyColor: colorDark900,
+        bodyColor: colorGrayLight,
       );
 }
 
@@ -64,6 +68,7 @@ const Color colorWhite100 = Color.fromARGB(255, 224, 224, 224);
 
 const Color colorDark900 = Color.fromARGB(255, 0, 0, 0);
 const Color colorDark600 = Color.fromARGB(255, 59, 59, 59);
+const Color colorGrayLight = Color.fromARGB(255, 147, 138, 138);
 
 const Color shrineErrorRed = Color(0xFFC5032B);
 
