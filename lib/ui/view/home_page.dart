@@ -2,6 +2,7 @@
 
 import 'package:clock_project/constants/constants.dart';
 import 'package:clock_project/ui/view/clock_page.dart';
+import 'package:clock_project/ui/view/stopwatch_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePageView extends StatefulWidget {
@@ -48,7 +49,7 @@ class _HomePageViewState extends State<HomePageView> {
       children: const [
         Text('sss'),
         ClockPageView(),
-        Text('asdas'),
+        StopWatchPageView(),
         Text('asdas'),
       ],
     );
@@ -68,7 +69,9 @@ class _HomePageViewState extends State<HomePageView> {
       backgroundColor: colorScheme.surface,
       selectedItemColor: colorScheme.onSurface,
       unselectedItemColor: colorScheme.onSurface.withOpacity(.70),
-      selectedLabelStyle: textTheme.caption,
+      selectedLabelStyle: textTheme.caption?.copyWith(
+        decoration: TextDecoration.underline,
+      ),
       unselectedLabelStyle: textTheme.caption,
       onTap: _onTap,
       items: [

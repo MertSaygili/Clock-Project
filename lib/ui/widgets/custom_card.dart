@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 
 class CustomCard extends StatefulWidget {
   const CustomCard(
-      {Key? key, required this.city, required this.clock, required this.info})
+      {Key? key,
+      required this.title,
+      required this.trailing,
+      required this.subtitle})
       : super(key: key);
 
-  final String city;
-  final String clock;
-  final String info;
+  final String title;
+  final String subtitle;
+  final String trailing;
 
   @override
   State<CustomCard> createState() => _CustomCardState();
@@ -30,17 +33,17 @@ class _CustomCardState extends State<CustomCard> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              widget.city,
+              widget.title,
               style: Theme.of(context).textTheme.headline3,
             ),
             Text(
-              widget.clock,
+              widget.trailing,
               style: Theme.of(context).textTheme.headline2,
             ),
           ],
         ),
         subtitle: Text(
-          widget.info,
+          widget.subtitle,
           style: Theme.of(context).textTheme.subtitle2,
         ),
         onTap: () {},

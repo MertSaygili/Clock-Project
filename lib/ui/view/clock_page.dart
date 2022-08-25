@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
+import '../widgets/custom_expanded.dart';
+
 class ClockPageView extends StatefulWidget {
   const ClockPageView({Key? key}) : super(key: key);
 
@@ -37,62 +39,19 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: _paddignItems.paddingScreen,
-        child: Column(
-          children: [
-            Expanded(
-              flex: 2,
-              child: ListView(
-                children: [
-                  Padding(
-                    padding: _paddignItems.paddingTimer,
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        _now,
-                        style: Theme.of(context).textTheme.headline1,
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: IconItems().addIcon,
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: IconItems().settingsIcon,
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                    thickness: 2,
-                  )
-                ],
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Padding(
-                padding: PaddignItems().paddingCard,
-                child: ListView.builder(
-                  itemCount: 3,
-                  itemBuilder: ((context, index) {
-                    return const CustomCard(
-                      city: 'Istanbul',
-                      clock: '18:20',
-                      info: 'Yerel saat dilimi',
-                    );
-                  }),
-                ),
-              ),
-            ),
-          ],
-        ),
+    return Padding(
+      padding: _paddignItems.paddingScreen,
+      child: Column(
+        children: [
+          CustomExpanded(
+            flex: 2,
+            child: _CustomListView(paddignItems: _paddignItems, now: _now),
+          ),
+          const CustomExpanded(
+            flex: 3,
+            child: _CustomCardListView(),
+          ),
+        ],
       ),
     );
   }
@@ -115,5 +74,85 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
   @override
   disposeTimer() {
     _everySecond.cancel();
+  }
+}
+
+class _CustomListView extends StatefulWidget {
+  const _CustomListView({
+    Key? key,
+    required PaddignItems paddignItems,
+    required String now,
+  })  : _paddignItems = paddignItems,
+        _now = now,
+        super(key: key);
+
+  final PaddignItems _paddignItems;
+  final String _now;
+
+  @override
+  State<_CustomListView> createState() => _CustomListViewState();
+}
+
+class _CustomListViewState extends State<_CustomListView> {
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: [
+        _time(context),
+        _icons(),
+      ],
+    );
+  }
+
+  Row _icons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        IconButton(
+          onPressed: () {},
+          icon: IconItems().addIcon,
+        ),
+        IconButton(
+          onPressed: () {},
+          icon: IconItems().settingsIcon,
+        ),
+      ],
+    );
+  }
+
+  Padding _time(BuildContext context) {
+    return Padding(
+      padding: widget._paddignItems.paddingTimer,
+      child: Align(
+        alignment: Alignment.center,
+        child: Text(
+          widget._now,
+          style: Theme.of(context).textTheme.headline1,
+        ),
+      ),
+    );
+  }
+}
+
+class _CustomCardListView extends StatelessWidget {
+  const _CustomCardListView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: PaddignItems().paddingCard,
+      child: ListView.builder(
+        itemCount: 3,
+        itemBuilder: ((context, index) {
+          return const CustomCard(
+            title: 'Istanbul',
+            trailing: '18:20',
+            subtitle: 'Yerel saat',
+          );
+        }),
+      ),
+    );
   }
 }
