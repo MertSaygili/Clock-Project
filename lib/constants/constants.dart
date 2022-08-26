@@ -26,10 +26,16 @@ class PaddignItems {
   final EdgeInsets paddingTimer = EdgeInsets.symmetric(
     vertical: PaddingValues().paddingMaxXX,
   );
+
+  final EdgeInsets paddingButton = EdgeInsets.symmetric(
+    vertical: PaddingValues().paddingSmall,
+    horizontal: PaddingValues().paddingNormal,
+  );
 }
 
 class PaddingValues {
   final double paddingSmall = 10;
   final double paddingNormal = 20;
+  final double paddingMax = 30;
   final double paddingMaxXX = 60;
 }

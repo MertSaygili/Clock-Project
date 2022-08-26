@@ -35,11 +35,13 @@ TextTheme _textTheme(TextTheme textTheme, FontSizes fontSizes) {
         ),
         caption: textTheme.caption?.copyWith(
           fontWeight: FontWeight.w500,
-          fontSize: fontSizes.sizeMin,
+          fontSize: fontSizes.sizeNormal,
+          letterSpacing: -1,
         ),
         button: textTheme.button?.copyWith(
-          fontWeight: FontWeight.w500,
-          fontSize: fontSizes.sizeMin,
+          fontWeight: FontWeight.w400,
+          fontSize: fontSizes.sizeNormal,
+          letterSpacing: 0,
         ),
       )
       .apply(

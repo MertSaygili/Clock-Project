@@ -71,6 +71,7 @@ class _HomePageViewState extends State<HomePageView> {
       unselectedItemColor: colorScheme.onSurface.withOpacity(.70),
       selectedLabelStyle: textTheme.caption?.copyWith(
         decoration: TextDecoration.underline,
+        decorationThickness: 2,
       ),
       unselectedLabelStyle: textTheme.caption,
       onTap: _onTap,
