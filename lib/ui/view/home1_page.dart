@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'clock_page.dart';
 
+const int _currentIndex = 0;
+
 class Home1PageView extends StatefulWidget {
   const Home1PageView({Key? key}) : super(key: key);
 
@@ -13,7 +15,6 @@ class Home1PageView extends StatefulWidget {
 
 class _Home1PageViewState extends State<Home1PageView> {
   late final PageController _controller;
-  final int _currentIndex = 0;
 
   @override
   void initState() {
@@ -31,7 +32,6 @@ class _Home1PageViewState extends State<Home1PageView> {
     return Scaffold(
       bottomNavigationBar: CustomBottomNavigationBar(
         controller: _controller,
-        currentIndex: _currentIndex,
       ),
       body: PageView(
         controller: _controller,
@@ -48,17 +48,16 @@ class _Home1PageViewState extends State<Home1PageView> {
   }
 
   void _setNewPage(int index) {
+    print(index);
     setState(() => index = _currentIndex);
   }
 }
 
 class CustomBottomNavigationBar extends StatefulWidget {
-  const CustomBottomNavigationBar(
-      {Key? key, required this.controller, required this.currentIndex})
+  const CustomBottomNavigationBar({Key? key, required this.controller})
       : super(key: key);
 
   final PageController controller;
-  final int currentIndex;
 
   @override
   State<CustomBottomNavigationBar> createState() =>
@@ -70,19 +69,20 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   final String _textSaat = 'Saat';
   final String _textKronometre = 'Kronometre';
   final String _textZamanlayici = 'Zamanlayici';
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    final AllColors _colors = AllColors();
+    final AllColors colors = AllColors();
     final textTheme = Theme.of(context).textTheme;
 
     return BottomNavigationBar(
-      currentIndex: widget.currentIndex,
+      currentIndex: _currentIndex,
       showSelectedLabels: true,
       showUnselectedLabels: true,
-      backgroundColor: _colors.colorTransparent,
-      selectedItemColor: _colors.colorBlack,
-      unselectedItemColor: _colors.colorGrey,
+      backgroundColor: colors.colorTransparent,
+      selectedItemColor: colors.colorBlack,
+      unselectedItemColor: colors.colorGrey,
       selectedLabelStyle: textTheme.headline3,
       unselectedLabelStyle: textTheme.headline3,
       onTap: _onTap,
@@ -103,6 +103,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   }
 
   void _onTap(int index) {
+    setState(() => _currentIndex = index);
+
     widget.controller.animateToPage(
       index,
       duration: const Duration(milliseconds: 400),
