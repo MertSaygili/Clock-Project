@@ -1,57 +1,6 @@
-import 'package:clock_project/constants/constants.dart';
-import 'package:clock_project/ui/view/stopwatch_page.dart';
 import 'package:flutter/material.dart';
 
-import 'clock_page.dart';
-
-const int _currentIndex = 0;
-
-class Home1PageView extends StatefulWidget {
-  const Home1PageView({Key? key}) : super(key: key);
-
-  @override
-  State<Home1PageView> createState() => _Home1PageViewState();
-}
-
-class _Home1PageViewState extends State<Home1PageView> {
-  late final PageController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = PageController();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: CustomBottomNavigationBar(
-        controller: _controller,
-      ),
-      body: PageView(
-        controller: _controller,
-        physics: const NeverScrollableScrollPhysics(),
-        onPageChanged: _setNewPage,
-        children: const [
-          Text('sss'),
-          ClockPageView(),
-          StopWatchPageView(),
-          Text('asdas'),
-        ],
-      ),
-    );
-  }
-
-  void _setNewPage(int index) {
-    print(index);
-    setState(() => index = _currentIndex);
-  }
-}
+import '../../constants/constants.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   const CustomBottomNavigationBar({Key? key, required this.controller})
@@ -83,7 +32,10 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       backgroundColor: colors.colorTransparent,
       selectedItemColor: colors.colorBlack,
       unselectedItemColor: colors.colorGrey,
-      selectedLabelStyle: textTheme.headline3,
+      selectedLabelStyle: textTheme.headline3?.copyWith(
+        decoration: TextDecoration.underline,
+        decorationThickness: 2,
+      ),
       unselectedLabelStyle: textTheme.headline3,
       onTap: _onTap,
       items: [
