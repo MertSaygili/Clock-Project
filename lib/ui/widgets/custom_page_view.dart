@@ -1,7 +1,7 @@
 import 'package:clock_project/ui/view/alarm_page.dart';
+import 'package:clock_project/ui/view/clock_page.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../view/clock_page.dart';
 import '../view/stopwatch_page.dart';
 
 class CustomPageView extends StatefulWidget {
@@ -24,7 +24,7 @@ class _CustomPageViewState extends State<CustomPageView> {
       children: const [
         AlarmPageView(),
         ClockPageView(),
-        StopWatchPageView(),
+        Text('asdas'),
         Text('asdas'),
       ],
     );
