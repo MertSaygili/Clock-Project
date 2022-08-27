@@ -56,24 +56,17 @@ class _HomePageViewState extends State<HomePageView> {
   }
 
   BottomNavigationBar _bottomNavigationBar() {
-    final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
-
     return BottomNavigationBar(
-      currentIndex: _currentIndex,
-      elevation: _elevation,
-      type: BottomNavigationBarType.shifting,
-      enableFeedback: true,
       showSelectedLabels: true,
       showUnselectedLabels: true,
-      backgroundColor: colorScheme.surface,
-      selectedItemColor: colorScheme.onSurface,
-      unselectedItemColor: colorScheme.onSurface.withOpacity(.70),
-      selectedLabelStyle: textTheme.caption?.copyWith(
-        decoration: TextDecoration.underline,
-        decorationThickness: 2,
-      ),
-      unselectedLabelStyle: textTheme.caption,
+      backgroundColor: Colors.transparent,
+      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.grey,
+      unselectedLabelStyle: Theme.of(context).textTheme.headline3,
+      selectedLabelStyle: Theme.of(context).textTheme.headline3?.copyWith(
+            decoration: TextDecoration.underline,
+            decorationThickness: 2,
+          ),
       onTap: _onTap,
       items: [
         _bottomNavigationBarItem(_textAlarm),
@@ -103,7 +96,3 @@ class _HomePageViewState extends State<HomePageView> {
     setState(() => _currentIndex = index);
   }
 }
-
-enum TabBarItems { Alarm, Saat, Kronometre, Zamanlayici }
-
-extension TabBarExtension on TabBarItems {}

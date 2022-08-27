@@ -8,6 +8,12 @@ class IconItems {
       Icon(Icons.format_list_bulleted_rounded, size: FontSizes().sizeMaxXX);
 }
 
+class AllColors {
+  final Color colorTransparent = Colors.transparent;
+  final Color colorBlack = Colors.black;
+  final Color colorGrey = Colors.grey;
+}
+
 class FontSizes {
   final double sizeMin = 14;
   final double sizeNormal = 18;
