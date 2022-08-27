@@ -1,3 +1,4 @@
+import 'package:clock_project/ui/view/alarm_page.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../view/clock_page.dart';
@@ -21,7 +22,7 @@ class _CustomPageViewState extends State<CustomPageView> {
       physics: const NeverScrollableScrollPhysics(),
       onPageChanged: _setNewPage,
       children: const [
-        Text('sss'),
+        AlarmPageView(),
         ClockPageView(),
         StopWatchPageView(),
         Text('asdas'),

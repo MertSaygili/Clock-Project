@@ -27,9 +27,7 @@ class _Home1PageViewState extends State<Home1PageView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomBottomNavigationBar(
-        controller: _controller,
-      ),
+      bottomNavigationBar: CustomBottomNavigationBar(controller: _controller),
       body: CustomPageView(controller: _controller),
     );
   }

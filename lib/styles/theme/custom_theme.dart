@@ -17,6 +17,12 @@ class CustomTheme {
 
   TextTheme _textStyles() {
     return TextTheme(
+      headline1: TextStyle(
+        fontSize: _fontSizes.sizeMaxX,
+        fontWeight: FontWeight.w400,
+        letterSpacing: -1,
+        color: _colors.colorBlack,
+      ),
       headline3: TextStyle(
         fontSize: _fontSizes.sizeNormal,
         fontWeight: FontWeight.w400,
