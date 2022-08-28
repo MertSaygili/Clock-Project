@@ -26,6 +26,7 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
   @override
   void dispose() {
     super.dispose();
+    disposeTimer();
   }
 
   @override

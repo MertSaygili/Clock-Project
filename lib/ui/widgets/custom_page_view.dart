@@ -2,8 +2,6 @@ import 'package:clock_project/ui/view/alarm_page.dart';
 import 'package:clock_project/ui/view/clock_page.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../view/stopwatch_page.dart';
-
 class CustomPageView extends StatefulWidget {
   const CustomPageView({Key? key, required this.controller}) : super(key: key);
   final PageController controller;
