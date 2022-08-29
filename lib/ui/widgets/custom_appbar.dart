@@ -26,7 +26,7 @@ class CustomAppBar extends StatefulWidget with PreferredSizeWidget {
 class _CustomAppBarState extends State<CustomAppBar> {
   final AllColors _colors = AllColors();
   final IconItems _icons = IconItems();
-  final double elevation = 15;
+  final double elevation = 10;
 
   @override
   Widget build(BuildContext context) {
@@ -66,8 +66,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        CustomIconButton(icon: _icons.addIcon),
-        CustomIconButton(icon: _icons.settingsIcon)
+        CustomIconButton(icon: _icons.addIcon, fun: null),
+        CustomIconButton(icon: _icons.settingsIcon, fun: null)
       ],
     );
   }

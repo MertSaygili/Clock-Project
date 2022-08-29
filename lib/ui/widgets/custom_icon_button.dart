@@ -2,8 +2,10 @@ import 'package:clock_project/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomIconButton extends StatefulWidget {
-  const CustomIconButton({Key? key, required this.icon}) : super(key: key);
+  const CustomIconButton({Key? key, required this.icon, required this.fun})
+      : super(key: key);
 
+  final Function? fun;
   final Icon icon;
 
   @override

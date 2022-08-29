@@ -23,19 +23,8 @@ class FontSizes {
 }
 
 class PaddignItems {
-  final EdgeInsets paddingScreen = EdgeInsets.all(
-    PaddingValues().paddingSmall,
-  );
   final EdgeInsets paddingCard = EdgeInsets.symmetric(
     vertical: PaddingValues().paddingSmall,
-  );
-  final EdgeInsets paddingTimer = EdgeInsets.symmetric(
-    vertical: PaddingValues().paddingMaxXX,
-  );
-
-  final EdgeInsets paddingButton = EdgeInsets.symmetric(
-    vertical: PaddingValues().paddingSmall,
-    horizontal: PaddingValues().paddingNormal,
   );
   final EdgeInsets paddingIconRow = EdgeInsets.only(
     right: PaddingValues().paddingSmall,
