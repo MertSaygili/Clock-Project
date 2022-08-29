@@ -19,7 +19,8 @@ class _StackButtonState extends State<StackButton> {
         height: 50,
         decoration: BoxDecoration(
           color: Colors.green,
-          borderRadius: BorderRadius.circular(20),
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(25),
         ),
         child: Stack(
           children: [
@@ -28,15 +29,16 @@ class _StackButtonState extends State<StackButton> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
+                    Transform.rotate(angle: 180);
                     _align = Alignment.centerRight;
                   });
                 },
                 child: Container(
                   height: 50,
                   width: 50,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
                     color: Colors.purple,
-                    borderRadius: BorderRadius.circular(30),
                   ),
                 ),
               ),
