@@ -32,6 +32,10 @@ class PaddignItems {
   final EdgeInsets paddingIconRow = EdgeInsets.only(
     right: PaddingValues().paddingSmall,
   );
+  final EdgeInsets paddingInsideCard = EdgeInsets.symmetric(
+    vertical: PaddingValues().paddingNormal,
+    horizontal: PaddingValues().paddingSmall,
+  );
 }
 
 class PaddingValues {

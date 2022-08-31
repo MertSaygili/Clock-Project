@@ -25,8 +25,8 @@ class _AlarmPageViewState extends State<AlarmPageView> {
       ),
       body: ListView.builder(itemBuilder: (context, index) {
         return const CustomCard(
-          title: 's',
-          subtitle: 'k',
+          title: 'Sabah Alarmi',
+          subtitle: '18.20',
         );
       }),
     );

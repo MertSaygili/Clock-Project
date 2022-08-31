@@ -13,8 +13,8 @@ class StackButton extends StatefulWidget {
 class _StackButtonState extends State<StackButton> {
   Alignment _alignment = Alignment.centerLeft;
   Color _color = AllColors().colorLightGray;
-  final double _mainContainerHeight = 25;
-  final double _mainContainerWidth = 50;
+  final double _mainContainerHeight = 35;
+  final double _mainContainerWidth = 70;
 
   @override
   Widget build(BuildContext context) {

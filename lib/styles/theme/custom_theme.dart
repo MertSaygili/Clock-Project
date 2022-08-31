@@ -23,11 +23,23 @@ class CustomTheme {
         letterSpacing: -1,
         color: _colors.colorBlack,
       ),
+      headline2: TextStyle(
+        fontSize: _fontSizes.sizeMax,
+        fontWeight: FontWeight.w400,
+        letterSpacing: -1,
+        color: _colors.colorBlack,
+      ),
       headline3: TextStyle(
         fontSize: _fontSizes.sizeNormal,
         fontWeight: FontWeight.w400,
         letterSpacing: -1,
         color: _colors.colorBlack,
+      ),
+      subtitle1: TextStyle(
+        fontSize: _fontSizes.sizeMin,
+        fontWeight: FontWeight.w400,
+        letterSpacing: -1,
+        color: _colors.colorGrey,
       ),
     );
   }
