@@ -26,8 +26,8 @@ class FontSizes {
 }
 
 class PaddignItems {
-  final EdgeInsets paddingCard = EdgeInsets.symmetric(
-    vertical: PaddingValues().paddingSmall,
+  final EdgeInsets paddingCard = EdgeInsets.only(
+    top: PaddingValues().paddingSmall,
   );
   final EdgeInsets paddingIconRow = EdgeInsets.only(
     right: PaddingValues().paddingSmall,

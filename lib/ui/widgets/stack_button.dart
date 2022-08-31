@@ -35,11 +35,14 @@ class _StackButtonState extends State<StackButton> {
 
     return Align(
       alignment: Alignment.centerRight,
-      child: Container(
-        height: _mainContainerHeight,
-        width: _mainContainerWidth,
-        decoration: mainContainerDecoration,
-        child: _animatedStackContainer(duration, animatedContainerDecoration),
+      child: GestureDetector(
+        onTap: _changeAlignment,
+        child: Container(
+          height: _mainContainerHeight,
+          width: _mainContainerWidth,
+          decoration: mainContainerDecoration,
+          child: _animatedStackContainer(duration, animatedContainerDecoration),
+        ),
       ),
     );
   }

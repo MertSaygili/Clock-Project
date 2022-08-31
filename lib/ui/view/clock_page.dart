@@ -1,8 +1,11 @@
 import 'package:clock_project/time/time.dart';
 import 'package:clock_project/ui/widgets/custom_appbar.dart';
+import 'package:clock_project/ui/widgets/custom_alarm_card.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
+
+import '../widgets/custom_clock_card.dart';
 
 class ClockPageView extends StatefulWidget {
   const ClockPageView({Key? key}) : super(key: key);
@@ -37,6 +40,13 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
         title: _now,
         prefferedSize: MediaQuery.of(context).size.height * 0.35,
       ),
+      body: ListView.builder(itemBuilder: (context, index) {
+        return const CustomClockCard(
+          title: 'Istanbul',
+          information: 'Yerel saat',
+          clock: '18.20',
+        );
+      }),
     );
   }
 

@@ -2,8 +2,8 @@ import 'package:clock_project/constants/constants.dart';
 import 'package:clock_project/ui/widgets/stack_button.dart';
 import 'package:flutter/material.dart';
 
-class CustomCard extends StatefulWidget {
-  const CustomCard(
+class CustomAlarmCard extends StatefulWidget {
+  const CustomAlarmCard(
       {Key? key, required this.title, required this.subtitle, this.days})
       : super(key: key);
 
@@ -12,12 +12,11 @@ class CustomCard extends StatefulWidget {
   final List<String>? days;
 
   @override
-  State<CustomCard> createState() => _CustomCardState();
+  State<CustomAlarmCard> createState() => _CustomAlarmCardState();
 }
 
-class _CustomCardState extends State<CustomCard> {
+class _CustomAlarmCardState extends State<CustomAlarmCard> {
   final double _elevation = 10;
-  final double _radius = 15;
 
   @override
   Widget build(BuildContext context) {

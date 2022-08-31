@@ -1,5 +1,5 @@
 import 'package:clock_project/constants/constants.dart';
-import 'package:clock_project/ui/widgets/custom_card.dart';
+import 'package:clock_project/ui/widgets/custom_alarm_card.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/custom_appbar.dart';
@@ -24,7 +24,7 @@ class _AlarmPageViewState extends State<AlarmPageView> {
         prefferedSize: MediaQuery.of(context).size.height * 0.35,
       ),
       body: ListView.builder(itemBuilder: (context, index) {
-        return const CustomCard(
+        return const CustomAlarmCard(
           title: 'Sabah Alarmi',
           subtitle: '18.20',
         );
