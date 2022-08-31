@@ -1,6 +1,5 @@
 import 'package:clock_project/time/time.dart';
 import 'package:clock_project/ui/widgets/custom_appbar.dart';
-import 'package:clock_project/ui/widgets/custom_alarm_card.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';

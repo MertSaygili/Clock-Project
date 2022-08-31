@@ -12,6 +12,18 @@ class CustomTheme {
     theme = ThemeData(
       fontFamily: 'RobotoMono',
       textTheme: _textStyles(),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          primary: _colors.colordeepPurpleAccent,
+          onPrimary: _colors.colorWhite,
+          padding: PaddignItems().paddingButton,
+          minimumSize: const Size(100, 50),
+          maximumSize: const Size(150, 50),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25),
+          ),
+        ),
+      ),
     );
   }
 
@@ -40,6 +52,12 @@ class CustomTheme {
         fontWeight: FontWeight.w400,
         letterSpacing: -1,
         color: _colors.colorGrey,
+      ),
+      button: TextStyle(
+        fontSize: _fontSizes.sizeNormal,
+        fontWeight: FontWeight.w400,
+        letterSpacing: -2,
+        color: _colors.colorWhite,
       ),
     );
   }

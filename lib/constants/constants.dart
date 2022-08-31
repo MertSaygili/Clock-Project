@@ -15,6 +15,7 @@ class AllColors {
   final Color colordeepPurpleAccent = Colors.deepPurpleAccent;
   final Color colorWhite = Colors.white;
   final Color colorGreen = Colors.green;
+  final Color colorRed = Colors.red;
 }
 
 class FontSizes {
@@ -35,6 +36,10 @@ class PaddignItems {
   final EdgeInsets paddingInsideCard = EdgeInsets.symmetric(
     vertical: PaddingValues().paddingNormal,
     horizontal: PaddingValues().paddingSmall,
+  );
+  final EdgeInsets paddingButton = EdgeInsets.symmetric(
+    vertical: PaddingValues().paddingSmall,
+    horizontal: PaddingValues().paddingNormal,
   );
 }
 
