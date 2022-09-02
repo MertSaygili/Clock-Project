@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_final_fields
 
+import 'dart:async';
+
 import 'package:clock_project/constants/constants.dart';
+import 'package:clock_project/time/time.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/custom_timer_appbar.dart';
@@ -29,8 +32,13 @@ class _Body extends StatefulWidget {
   State<_Body> createState() => _BodyState();
 }
 
-class _BodyState extends State<_Body> {
-  final String _time = '00:00:00';
+class _BodyState extends State<_Body> with Time {
+  late Timer _everyTenMilisecond;
+  int _splitsecond = 0;
+  int _second = 0;
+  int _minute = 0;
+
+  String _time = '00:00:00';
   Color? _firstButtonColor = AllColors().colorGrey;
   String _currentFirstButtonText = ButtonText().textTur;
   String _currentSecondButtonText = ButtonText().textBaslat;
@@ -78,11 +86,18 @@ class _BodyState extends State<_Body> {
     setState(() {
       if (_isClicked) {
         // user has pressed 'baslat' button
-        if (_currentSecondButtonText.compareTo(ButtonText().textDur) == 0) {
+        if (_currentFirstButtonText.compareTo(ButtonText().textTur) == 0) {
           // new scaffold -> tur
         } else {
-          // _currentSecondButtonText.compareTo(ButtonText().textSurdur
-
+          // user has clicked 'Sifirla'
+          disposeTimer();
+          _time = '00:00:00';
+          _currentSecondButtonText = ButtonText().textBaslat;
+          _currentFirstButtonText = ButtonText().textTur;
+          _isClicked = false;
+          _splitsecond = 0;
+          _second = 0;
+          _minute = 0;
         }
       }
       // user has not pressed 'baslat' button
@@ -95,6 +110,7 @@ class _BodyState extends State<_Body> {
       if (_currentSecondButtonText.compareTo(ButtonText().textBaslat) == 0) {
         _currentSecondButtonText = ButtonText().textDur;
         _isClicked = true;
+        updateTime();
         // start stopwatch
       } else if (_currentSecondButtonText.compareTo(ButtonText().textDur) ==
           0) {
@@ -130,6 +146,63 @@ class _BodyState extends State<_Body> {
       ),
       child: Text(text),
     );
+  }
+
+  @override
+  disposeTimer() {
+    _everyTenMilisecond.cancel();
+  }
+
+  @override
+  setTime() {
+    var buffer = StringBuffer();
+    // ms
+    if (_splitsecond == 99) {
+      _second = _second + 1;
+      _splitsecond = 0;
+    } else {
+      _splitsecond = _splitsecond + 1;
+    }
+
+    // s
+    if (_second == 59) {
+      _minute = _minute + 1;
+      _second = 0;
+    }
+
+    // m
+    if (_minute < 10) {
+      buffer.write('0$_minute:');
+    } else {
+      buffer.write('$_minute:');
+    }
+
+    // s
+    if (_second < 10) {
+      buffer.write('0$_second:');
+    } else {
+      buffer.write('$_second:');
+    }
+
+    // ms
+    if (_splitsecond < 10) {
+      buffer.write('0$_splitsecond');
+    } else {
+      buffer.write('$_splitsecond');
+    }
+
+    _time = buffer.toString();
+    buffer.clear();
+  }
+
+  @override
+  updateTime() {
+    _everyTenMilisecond =
+        Timer.periodic(const Duration(milliseconds: 10), (Timer t) {
+      setState(() {
+        setTime();
+      });
+    });
   }
 }
 
