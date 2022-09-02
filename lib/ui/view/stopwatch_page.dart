@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_final_fields
+
 import 'package:clock_project/constants/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +19,7 @@ class StopwatchPageView extends StatelessWidget {
   }
 }
 
+// body class
 class _Body extends StatefulWidget {
   const _Body({
     Key? key,
@@ -28,20 +31,18 @@ class _Body extends StatefulWidget {
 
 class _BodyState extends State<_Body> {
   final String _time = '00:00:00';
-  final ButtonText _buttonText = ButtonText();
-
-  final bool _isClicked = false;
+  Color? _firstButtonColor = AllColors().colorGrey;
+  String _currentFirstButtonText = ButtonText().textTur;
+  String _currentSecondButtonText = ButtonText().textBaslat;
+  bool _isClicked = false;
 
   @override
   Widget build(BuildContext context) {
-    String firstButtonText = _buttonText.textTur;
-    String secondButtonText = _buttonText.textBaslat;
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         _customText(context),
-        _buttonRow(firstButtonText, secondButtonText)
+        _buttonRow(_currentFirstButtonText, _currentSecondButtonText)
       ],
     );
   }
@@ -54,6 +55,7 @@ class _BodyState extends State<_Body> {
     );
   }
 
+  // button row
   Row _buttonRow(String firstButtonText, String secondButtonText) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -61,29 +63,67 @@ class _BodyState extends State<_Body> {
         _customButton(
           firstButtonText,
           AllColors().colorGrey,
-          _firstButtonAction,
           false, // for determine that which button is which
         ),
         _customButton(
           secondButtonText,
           null,
-          _secondButtonAction,
           true,
         ),
       ],
     );
   }
 
-  Function? _firstButtonAction() {}
-  Function? _secondButtonAction() {}
+  void _firstButtonAction() {
+    setState(() {
+      if (_isClicked) {
+        // user has pressed 'baslat' button
+        if (_currentSecondButtonText.compareTo(ButtonText().textDur) == 0) {
+          // new scaffold -> tur
+        } else {
+          // _currentSecondButtonText.compareTo(ButtonText().textSurdur
 
-  ElevatedButton _customButton(
-      String text, Color? color, Function fun, bool check) {
+        }
+      }
+      // user has not pressed 'baslat' button
+      // do nothing
+    });
+  }
+
+  void _secondButtonAction() {
+    setState(() {
+      if (_currentSecondButtonText.compareTo(ButtonText().textBaslat) == 0) {
+        _currentSecondButtonText = ButtonText().textDur;
+        _isClicked = true;
+        // start stopwatch
+      } else if (_currentSecondButtonText.compareTo(ButtonText().textDur) ==
+          0) {
+        // stop stopwatch
+        _currentFirstButtonText = ButtonText().textSifirla;
+        _currentSecondButtonText = ButtonText().textSurdur;
+        _firstButtonColor = AllColors().colorRed;
+      } else if (_currentSecondButtonText.compareTo(ButtonText().textSurdur) ==
+          0) {
+        // keep increasing time
+        _currentSecondButtonText = ButtonText().textDur;
+      }
+    });
+  }
+
+  ElevatedButton _customButton(String text, Color? color, bool check) {
+    if (color != null) {
+      color = _firstButtonColor;
+    }
+
     return ElevatedButton(
-      onPressed: check
-          ? () {}
-          : _isClicked
-              ? () {}
+      onPressed: check // determine that which button is it
+          ? () {
+              _secondButtonAction();
+            }
+          : _isClicked // has user clicked 'baslat' button
+              ? () {
+                  _firstButtonAction();
+                }
               : null,
       style: ElevatedButton.styleFrom(
         primary: color ?? AllColors().colordeepPurpleAccent,
@@ -98,5 +138,6 @@ class ButtonText {
   final String textTur = 'Tur';
   final String textBaslat = 'Baslat';
   final String textDur = 'Dur';
+  final String textSurdur = 'Surdur';
   final String textSifirla = 'Sifirla';
 }
