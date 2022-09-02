@@ -39,7 +39,7 @@ class _BodyState extends State<_Body> with Time {
   int _minute = 0;
 
   String _time = '00:00:00';
-  Color? _firstButtonColor = AllColors().colorGrey;
+  final Color _firstButtonColor = AllColors().colorGrey;
   String _currentFirstButtonText = ButtonText().textTur;
   String _currentSecondButtonText = ButtonText().textBaslat;
   bool _isClicked = false;
@@ -118,11 +118,11 @@ class _BodyState extends State<_Body> with Time {
         disposeTimer();
         _currentFirstButtonText = ButtonText().textSifirla;
         _currentSecondButtonText = ButtonText().textSurdur;
-        _firstButtonColor = AllColors().colorRed;
       } else if (_currentSecondButtonText.compareTo(ButtonText().textSurdur) ==
           0) {
         // keep increasing time
         updateTime();
+        _currentFirstButtonText = ButtonText().textTur;
         _currentSecondButtonText = ButtonText().textDur;
       }
     });
@@ -130,9 +130,12 @@ class _BodyState extends State<_Body> with Time {
 
   ElevatedButton _customButton(String text, Color? color, bool check) {
     if (color != null) {
-      color = _firstButtonColor;
+      if (_currentFirstButtonText.compareTo(ButtonText().textSifirla) == 0) {
+        color = AllColors().colorRed;
+      } else {
+        color = AllColors().colorGrey;
+      }
     }
-
     return ElevatedButton(
       onPressed: check // determine that which button is it
           ? () {
