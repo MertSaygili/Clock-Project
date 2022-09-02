@@ -6,6 +6,7 @@ import 'package:clock_project/constants/constants.dart';
 import 'package:clock_project/time/time.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/custom_icon_button.dart';
 import '../widgets/custom_timer_appbar.dart';
 
 class StopwatchPageView extends StatelessWidget {
@@ -16,7 +17,13 @@ class StopwatchPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomSettingsAppBar(prefferedSize: _prefferedSize),
+      appBar: CustomSettingsAppBar(
+        prefferedSize: _prefferedSize,
+        customIconButton: CustomIconButton(
+          icon: IconItems().settingsIcon,
+          fun: null,
+        ),
+      ),
       body: const _Body(),
     );
   }
@@ -39,7 +46,6 @@ class _BodyState extends State<_Body> with Time {
   int _minute = 0;
 
   String _time = '00:00:00';
-  final Color _firstButtonColor = AllColors().colorGrey;
   String _currentFirstButtonText = ButtonText().textTur;
   String _currentSecondButtonText = ButtonText().textBaslat;
   bool _isClicked = false;

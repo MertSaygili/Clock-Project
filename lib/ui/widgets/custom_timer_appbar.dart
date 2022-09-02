@@ -10,9 +10,13 @@ class CustomSettingsAppBar extends StatefulWidget with PreferredSizeWidget {
   const CustomSettingsAppBar({
     Key? key,
     required this.prefferedSize,
+    required this.customIconButton,
+    this.customIconButton2,
   }) : super(key: key);
 
   final prefferedSize;
+  final CustomIconButton customIconButton;
+  final CustomIconButton? customIconButton2;
 
   @override
   State<CustomSettingsAppBar> createState() => CustomSettingsAppBarState();
@@ -30,10 +34,8 @@ class CustomSettingsAppBarState extends State<CustomSettingsAppBar> {
       backgroundColor: AllColors().colorWhite,
       systemOverlayStyle: SystemUiOverlayStyle.dark,
       actions: [
-        CustomIconButton(
-          icon: IconItems().settingsIcon,
-          fun: null,
-        )
+        widget.customIconButton,
+        widget.customIconButton2 ?? const SizedBox(),
       ],
     );
   }

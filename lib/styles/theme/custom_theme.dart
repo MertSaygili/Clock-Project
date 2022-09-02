@@ -59,6 +59,12 @@ class CustomTheme {
         letterSpacing: -2,
         color: _colors.colorWhite,
       ),
+      caption: TextStyle(
+        fontSize: _fontSizes.sizeMax,
+        fontWeight: FontWeight.w400,
+        letterSpacing: -2,
+        color: _colors.colordeepPurpleAccent,
+      ),
     );
   }
 }
