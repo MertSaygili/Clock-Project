@@ -150,6 +150,7 @@ class _BodyState extends State<_Body> with Time {
     );
   }
 
+  // Time interface @override functions
   @override
   disposeTimer() {
     _everyTenMilisecond.cancel();
