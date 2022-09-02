@@ -115,12 +115,14 @@ class _BodyState extends State<_Body> with Time {
       } else if (_currentSecondButtonText.compareTo(ButtonText().textDur) ==
           0) {
         // stop stopwatch
+        disposeTimer();
         _currentFirstButtonText = ButtonText().textSifirla;
         _currentSecondButtonText = ButtonText().textSurdur;
         _firstButtonColor = AllColors().colorRed;
       } else if (_currentSecondButtonText.compareTo(ButtonText().textSurdur) ==
           0) {
         // keep increasing time
+        updateTime();
         _currentSecondButtonText = ButtonText().textDur;
       }
     });
