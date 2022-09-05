@@ -1,39 +1,25 @@
-import 'dart:async';
+// ignore_for_file: prefer_typing_uninitialized_variables
 
-import 'package:clock_project/time/time.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 class CustomProgressBar extends StatefulWidget {
-  const CustomProgressBar({super.key, required this.time});
+  const CustomProgressBar({
+    super.key,
+    required this.time,
+    required this.percent,
+    required this.clickTime,
+  });
   final int time;
+  final double percent;
+  final int clickTime;
 
   @override
   State<CustomProgressBar> createState() => _CustomProgressBarState();
 }
 
-class _CustomProgressBarState extends State<CustomProgressBar> with Time {
-  late final Timer _everySecond;
-  late final _increaseAmount;
+class _CustomProgressBarState extends State<CustomProgressBar> {
   final double _lineWidth = 10;
-
-  int _everyClick = 0;
-  double _currentPercent = 1;
-
-  @override
-  void initState() {
-    super.initState();
-    _increaseAmount = 100 / widget.time;
-
-    setTime();
-    updateTime();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    disposeTimer();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,39 +32,14 @@ class _CustomProgressBarState extends State<CustomProgressBar> with Time {
           CircularPercentIndicator(
             radius: radius,
             lineWidth: _lineWidth,
-            percent: _currentPercent,
+            percent: widget.percent,
             center: Text(
-              '${widget.time - _everyClick}',
+              '${widget.time - widget.clickTime}',
               style: Theme.of(context).textTheme.headline1,
             ),
           ),
         ],
       ),
     );
-  }
-
-  @override
-  disposeTimer() {
-    _everySecond.cancel();
-  }
-
-  @override
-  setTime() {
-    _everyClick++;
-    _currentPercent = 1.0 - (_increaseAmount * _everyClick) / 100;
-
-    if (_everyClick == widget.time) {
-      disposeTimer();
-      //todo: show dialog box
-    }
-  }
-
-  @override
-  updateTime() {
-    _everySecond = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {
-        setTime();
-      });
-    });
   }
 }

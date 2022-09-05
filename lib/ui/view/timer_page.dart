@@ -108,7 +108,7 @@ class _CustomElevatedButtonState extends State<_CustomElevatedButton> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => TimerStopwatchPageView(
+                    builder: (context) => TimerStopwatchPV(
                           hour: widget.timeVal[0],
                           minute: widget.timeVal[1],
                           second: widget.timeVal[2],
