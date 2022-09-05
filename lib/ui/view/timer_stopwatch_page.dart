@@ -1,3 +1,4 @@
+import 'package:clock_project/ui/widgets/custom_progress_bar_indicator.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/constants.dart';
@@ -21,7 +22,14 @@ class TimerStopwatchPageView extends StatefulWidget {
 }
 
 class _TimerStopwatchPageViewState extends State<TimerStopwatchPageView> {
+  late int _totalTime;
   final double _prefferedSize = 50;
+
+  @override
+  void initState() {
+    super.initState();
+    _totalTime = calculateTotalTime();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +45,17 @@ class _TimerStopwatchPageViewState extends State<TimerStopwatchPageView> {
           fun: null,
         ),
       ),
-      body: Column(),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          CustomProgressBarIndicator(time: _totalTime),
+          ElevatedButton(onPressed: () {}, child: const Text('click'))
+        ],
+      ),
     );
+  }
+
+  int calculateTotalTime() {
+    return widget.hour * 3600 + widget.minute * 60 + widget.second;
   }
 }

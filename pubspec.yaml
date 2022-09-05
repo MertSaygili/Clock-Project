@@ -13,8 +13,11 @@ dependencies:
   # for timer
   intl: ^0.17.0
 
-   # for pick number
+  # for pick number
   numberpicker: ^2.1.1
+
+  # circular indicator
+  percent_indicator: ^4.2.2
 
 
 
