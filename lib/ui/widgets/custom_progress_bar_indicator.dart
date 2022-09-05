@@ -1,14 +1,20 @@
-import 'package:clock_project/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-class CustomProgressBarIndicator extends StatelessWidget {
-  const CustomProgressBarIndicator({super.key, required this.time});
+class CustomProgressBar extends StatefulWidget {
+  const CustomProgressBar({super.key, required this.time});
   final int time;
 
   @override
+  State<CustomProgressBar> createState() => _CustomProgressBarState();
+}
+
+class _CustomProgressBarState extends State<CustomProgressBar> {
+  final double _lineWidth = 10;
+
+  @override
   Widget build(BuildContext context) {
-    final double radius = MediaQuery.of(context).size.width / 4;
+    final double radius = MediaQuery.of(context).size.width / 3;
 
     return Center(
       child: Column(
@@ -16,6 +22,7 @@ class CustomProgressBarIndicator extends StatelessWidget {
         children: [
           CircularPercentIndicator(
             radius: radius,
+            lineWidth: _lineWidth,
           ),
         ],
       ),

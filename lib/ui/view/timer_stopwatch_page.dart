@@ -48,7 +48,7 @@ class _TimerStopwatchPageViewState extends State<TimerStopwatchPageView> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          CustomProgressBarIndicator(time: _totalTime),
+          CustomProgressBar(time: _totalTime),
           ElevatedButton(onPressed: () {}, child: const Text('click'))
         ],
       ),
