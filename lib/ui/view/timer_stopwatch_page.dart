@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import 'package:clock_project/time/time.dart';
+import 'package:clock_project/ui/widgets/custom_dialog_box.dart';
 import 'package:clock_project/ui/widgets/custom_progress_bar_indicator.dart';
 import 'package:flutter/material.dart';
 
@@ -32,8 +33,7 @@ class _TimerStopwatchPVState extends State<TimerStopwatchPV> with Time {
   late int _totalTime;
 
   final double _prefferedSize = 50;
-
-  final double _lineWidth = 10;
+  late final String val;
 
   int _everyClick = 0;
   double _currentPercent = 1;
@@ -101,13 +101,12 @@ class _TimerStopwatchPVState extends State<TimerStopwatchPV> with Time {
   }
 
   @override
-  setTime() {
-    _everyClick++;
+  setTime() async {
     _currentPercent = 1.0 - (_increaseAmount * _everyClick) / 100;
+    _everyClick++;
 
-    if (_everyClick == _totalTime) {
+    if (_everyClick == _totalTime + 1) {
       disposeTimer();
-      //todo: show dialog box
     }
   }
 

@@ -34,7 +34,7 @@ class _CustomProgressBarState extends State<CustomProgressBar> {
             lineWidth: _lineWidth,
             percent: widget.percent,
             center: Text(
-              '${widget.time - widget.clickTime}',
+              '${widget.time - widget.clickTime + 1}',
               style: Theme.of(context).textTheme.headline1,
             ),
           ),
