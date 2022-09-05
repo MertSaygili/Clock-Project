@@ -14,8 +14,8 @@ class CustomTheme {
       textTheme: _textStyles(),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          primary: _colors.colordeepPurpleAccent,
-          onPrimary: _colors.colorWhite,
+          foregroundColor: _colors.colorWhite,
+          backgroundColor: _colors.colordeepPurpleAccent,
           padding: PaddignItems().paddingButton,
           minimumSize: const Size(100, 50),
           maximumSize: const Size(150, 50),

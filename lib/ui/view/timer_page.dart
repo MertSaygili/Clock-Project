@@ -16,15 +16,8 @@ class TimerPageView extends StatefulWidget {
 
 class _TimerPageViewState extends State<TimerPageView> {
   //todo:: zamani al ve elevated button icinde kullan
-  late int _hour;
-  late int _minute;
-  late int _second;
-
   final double _prefferedSize = 50;
-  final String _textSaat = 'Saat';
-  final String _textDakika = 'Dakika';
-  final String _textSaniye = 'Saniye';
-  final String _textBaslat = 'Baslat';
+  List<int> timeVal = [0, 0, 0];
 
   @override
   Widget build(BuildContext context) {
@@ -46,24 +39,47 @@ class _TimerPageViewState extends State<TimerPageView> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _TimerColumn(text: _textSaat, minValue: 0, maxValue: 99),
-              _TimerColumn(text: _textDakika, minValue: 0, maxValue: 59),
-              _TimerColumn(text: _textSaniye, minValue: 0, maxValue: 59),
+              _TimerColumn(
+                text: Texts().textSaat,
+                minValue: 0,
+                maxValue: 99,
+              ),
+              _TimerColumn(
+                text: Texts().textDakika,
+                minValue: 0,
+                maxValue: 59,
+              ),
+              _TimerColumn(
+                text: Texts().textSaniye,
+                minValue: 0,
+                maxValue: 59,
+              ),
             ],
           ),
           //todo:: elevated buttonu widget olarak cikar islemleri orada yap
-          ElevatedButton(onPressed: () {}, child: Text(_textBaslat)),
+          _CustomElevatedButton(timeVal: timeVal),
         ],
       ),
     );
   }
+}
 
-  void setTimeProperties(int hour, int minute, int second) {
-    setState(() {
-      _hour = hour;
-      _minute = minute;
-      _second = second;
-    });
+class _CustomElevatedButton extends StatefulWidget {
+  const _CustomElevatedButton({
+    Key? key,
+    required this.timeVal,
+  }) : super(key: key);
+
+  final List<int> timeVal;
+
+  @override
+  State<_CustomElevatedButton> createState() => _CustomElevatedButtonState();
+}
+
+class _CustomElevatedButtonState extends State<_CustomElevatedButton> {
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(onPressed: () {}, child: Text(Texts().textBaslat));
   }
 }
 
@@ -84,18 +100,10 @@ class _TimerColumn extends StatefulWidget {
 }
 
 class _TimerColumnState extends State<_TimerColumn> {
-  late int timeVal;
-
   //todo:: zamani aldik ama hangisinin hangisi oldugu bilmiyoruz
   //! text'e sahip oldugumuz icin hangisinin hangisi oldugunu anlayabiliriz ama
   //! yeterli degil 3 farkli fonksiyon disinde tek fonks ile birtirmeye calis
   //! ayirma islemi burada gerceklesmeli
-  void setTime(int val) {
-    setState(() {
-      timeVal = val;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -109,6 +117,23 @@ class _TimerColumnState extends State<_TimerColumn> {
         ),
       ],
     );
+  }
+
+  List<int> setTime(int val) {
+    List<int> timeVal = [0, 0, 0];
+    List<String> timeNames = [
+      Texts().textSaat,
+      Texts().textDakika,
+      Texts().textSaniye
+    ];
+    setState(() {
+      for (var i = 0; i < timeVal.length; i++) {
+        if (widget.text.compareTo(timeNames[i]) == 0) {
+          timeVal[i] = val;
+        }
+      }
+    });
+    return timeVal;
   }
 }
 
@@ -166,4 +191,11 @@ class _NumberPickerState extends State<_NumberPicker> {
       },
     );
   }
+}
+
+class Texts {
+  final String textSaat = 'Saat';
+  final String textDakika = 'Dakika';
+  final String textSaniye = 'Saniye';
+  final String textBaslat = 'Baslat';
 }

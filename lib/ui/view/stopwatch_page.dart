@@ -153,7 +153,7 @@ class _BodyState extends State<_Body> with Time {
                 }
               : null,
       style: ElevatedButton.styleFrom(
-        primary: color ?? AllColors().colordeepPurpleAccent,
+        backgroundColor: color ?? AllColors().colordeepPurpleAccent,
       ),
       child: Text(text),
     );
