@@ -1,11 +1,11 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
+// ignore_for_file: prefer_typing_uninitialized_variables, unused_local_variable
 
 import 'dart:async';
 
 import 'package:clock_project/time/time.dart';
-import 'package:clock_project/ui/widgets/custom_dialog_box.dart';
 import 'package:clock_project/ui/widgets/custom_progress_bar_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../constants/constants.dart';
 import '../widgets/custom_icon_button.dart';
@@ -31,9 +31,10 @@ class _TimerStopwatchPVState extends State<TimerStopwatchPV> with Time {
   late final Timer _everySecond;
   late final _increaseAmount;
   late int _totalTime;
+  late String _nextTime;
 
+  final DateFormat _dateFormat = DateFormat('Hms');
   final double _prefferedSize = 50;
-  late final String val;
 
   int _everyClick = 0;
   double _currentPercent = 1;
@@ -47,8 +48,9 @@ class _TimerStopwatchPVState extends State<TimerStopwatchPV> with Time {
   @override
   void initState() {
     super.initState();
-    _totalTime = calculateTotalTime();
-    _increaseAmount = 100 / _totalTime;
+    _calculateTotalTime();
+    _calculateNextTime();
+    _calculateIncreaseAmount();
     setTime();
     updateTime();
   }
@@ -64,6 +66,7 @@ class _TimerStopwatchPVState extends State<TimerStopwatchPV> with Time {
             time: _totalTime,
             percent: _currentPercent,
             clickTime: _everyClick,
+            nextTime: _nextTime,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -91,10 +94,42 @@ class _TimerStopwatchPVState extends State<TimerStopwatchPV> with Time {
     );
   }
 
-  int calculateTotalTime() {
-    return widget.hour * 3600 + widget.minute * 60 + widget.second;
+  // calculate time functions
+  void _calculateTotalTime() {
+    _totalTime = widget.hour * 3600 + widget.minute * 60 + widget.second;
   }
 
+  void _calculateNextTime() {
+    String now = _dateFormat.format(DateTime.now()).toString();
+    List<String> hms = now.split(':');
+
+    int second = 0;
+    int minute = 0;
+    int hour = 0;
+
+    if (int.parse(hms[2]) + widget.second >= 60) {
+      second = int.parse(hms[2]) + widget.second - 60;
+      minute = 1;
+    }
+    second = int.parse(hms[2]) + widget.second;
+
+    if (int.parse(hms[1]) + widget.minute >= 60) {
+      minute += int.parse(hms[1]) + widget.minute - 60;
+      hour = 1;
+    }
+    minute += int.parse(hms[1]) + widget.minute;
+
+    if (int.parse(hms[0]) + widget.hour >= 24) {
+      hour += int.parse(hms[0]) + widget.hour - 24;
+    }
+    hour += int.parse(hms[0]) + widget.hour;
+
+    _nextTime = '$hour:$minute:$second';
+  }
+
+  void _calculateIncreaseAmount() => _increaseAmount = 100 / _totalTime;
+
+  // Time interface functions
   @override
   disposeTimer() {
     _everySecond.cancel();
