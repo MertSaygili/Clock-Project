@@ -1,5 +1,6 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:clock_project/ui/view/timer_stopwatch_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/constants.dart';
@@ -43,16 +44,19 @@ class _TimerPageViewState extends State<TimerPageView> {
                 text: Texts().textSaat,
                 minValue: 0,
                 maxValue: 99,
+                funs: [setHour, setMinute, setSecond],
               ),
               _TimerColumn(
                 text: Texts().textDakika,
                 minValue: 0,
                 maxValue: 59,
+                funs: [setHour, setMinute, setSecond],
               ),
               _TimerColumn(
                 text: Texts().textSaniye,
                 minValue: 0,
                 maxValue: 59,
+                funs: [setHour, setMinute, setSecond],
               ),
             ],
           ),
@@ -61,6 +65,24 @@ class _TimerPageViewState extends State<TimerPageView> {
         ],
       ),
     );
+  }
+
+  void setHour(int val) {
+    setState(() {
+      timeVal[0] = val;
+    });
+  }
+
+  void setMinute(int val) {
+    setState(() {
+      timeVal[1] = val;
+    });
+  }
+
+  void setSecond(int val) {
+    setState(() {
+      timeVal[2] = val;
+    });
   }
 }
 
@@ -79,7 +101,31 @@ class _CustomElevatedButton extends StatefulWidget {
 class _CustomElevatedButtonState extends State<_CustomElevatedButton> {
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(onPressed: () {}, child: Text(Texts().textBaslat));
+    return ElevatedButton(
+      onPressed: _checkTimeValues()
+          ? null
+          : () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => TimerStopwatchPageView(
+                          hour: widget.timeVal[0],
+                          minute: widget.timeVal[1],
+                          second: widget.timeVal[2],
+                        )),
+              );
+            },
+      child: Text(Texts().textBaslat),
+    );
+  }
+
+  bool _checkTimeValues() {
+    if (widget.timeVal[0] == 0 &&
+        widget.timeVal[1] == 0 &&
+        widget.timeVal[2] == 0) {
+      return true;
+    }
+    return false;
   }
 }
 
@@ -89,8 +135,10 @@ class _TimerColumn extends StatefulWidget {
     required this.text,
     required this.minValue,
     required this.maxValue,
+    required this.funs,
   }) : super(key: key);
 
+  final List<Function> funs;
   final String text;
   final int minValue;
   final int maxValue;
@@ -100,10 +148,6 @@ class _TimerColumn extends StatefulWidget {
 }
 
 class _TimerColumnState extends State<_TimerColumn> {
-  //todo:: zamani aldik ama hangisinin hangisi oldugu bilmiyoruz
-  //! text'e sahip oldugumuz icin hangisinin hangisi oldugunu anlayabiliriz ama
-  //! yeterli degil 3 farkli fonksiyon disinde tek fonks ile birtirmeye calis
-  //! ayirma islemi burada gerceklesmeli
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -119,21 +163,20 @@ class _TimerColumnState extends State<_TimerColumn> {
     );
   }
 
-  List<int> setTime(int val) {
-    List<int> timeVal = [0, 0, 0];
+  void setTime(int val) {
     List<String> timeNames = [
       Texts().textSaat,
       Texts().textDakika,
       Texts().textSaniye
     ];
     setState(() {
-      for (var i = 0; i < timeVal.length; i++) {
+      for (var i = 0; i < timeNames.length; i++) {
         if (widget.text.compareTo(timeNames[i]) == 0) {
-          timeVal[i] = val;
+          widget.funs[i](val);
+          break;
         }
       }
     });
-    return timeVal;
   }
 }
 
