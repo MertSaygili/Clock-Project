@@ -5,6 +5,7 @@ class IconItems {
   final Icon nullIcon = const Icon(Icons.noise_control_off, size: 1);
   final Icon addIcon = const Icon(Icons.add);
   final Icon settingsIcon = const Icon(Icons.format_list_bulleted_rounded);
+  final Icon closeIcon = const Icon(Icons.close);
 }
 
 class AllColors {

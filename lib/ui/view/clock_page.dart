@@ -56,8 +56,7 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
 
   // functions
   void _takeLocation() {
-    location = CustomModalBottomSheets.CustomModalSheetClock(context);
-    print(location);
+    location = CustomModalBottomSheets.customModalSheetClock(context);
   }
 
   // current time functions
