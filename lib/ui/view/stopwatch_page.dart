@@ -10,6 +10,7 @@ import '../widgets/custom_icon_button.dart';
 import '../widgets/custom_timer_appbar.dart';
 
 class StopwatchPageView extends StatelessWidget {
+  //todo:: add 'tur' button scaffold
   const StopwatchPageView({Key? key}) : super(key: key);
 
   final double _prefferedSize = 50;
