@@ -18,11 +18,13 @@ class ClockPageView extends StatefulWidget {
 
 class _ClockPageViewState extends State<ClockPageView> with Time {
   //todo:: add card dynimacly exct
-  late final String location;
+  late final String _location;
   late final Timer _everySecond;
+  late final Iterable<String> _locations;
+  late String _currentValue;
   late String _now;
 
-  final TimeZones timeZones = TimeZones();
+  final TimeZones _timeZones = TimeZones();
   final DateFormat _dateFormat = DateFormat('Hms');
 
   @override
@@ -30,6 +32,7 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
     super.initState();
     setTime();
     updateTime();
+    _setLocations();
   }
 
   @override
@@ -59,7 +62,12 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
 
   // functions
   void _takeLocation() {
-    location = _customModalBottomSheet();
+    _customModalBottomSheet();
+  }
+
+  void _setLocations() {
+    _locations = _timeZones.getLocations();
+    _currentValue = _locations.first;
   }
 
   // current time functions
@@ -85,7 +93,6 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
   String _customModalBottomSheet() {
     double bR = 15; // borderRadius
     double elevation = 15;
-    String currentValue = timeZones.getLocations().first;
 
     void close() {
       Navigator.pop(context);
@@ -93,48 +100,58 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
 
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(bR))),
+          borderRadius: BorderRadius.vertical(top: Radius.circular(bR)),
+        ),
         isDismissible: false,
         isScrollControlled: true,
         elevation: elevation,
         context: context,
         builder: (context) {
-          return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.6,
-            child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: CustomIconButton(
-                      icon: IconItems().closeIcon,
-                      fun: close,
+          return StatefulBuilder(
+              builder: (BuildContext context, StateSetter setState) {
+            return SizedBox(
+              height: MediaQuery.of(context).size.height * 0.6,
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: CustomIconButton(
+                        icon: IconItems().closeIcon,
+                        fun: close,
+                      ),
                     ),
                   ),
-                ),
-                DropdownButton<String>(
-                    menuMaxHeight: MediaQuery.of(context).size.height * 0.4,
-                    value: TimeZones().getLocations().first,
-                    items: TimeZones()
-                        .getLocations()
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: currentValue,
-                        child: Text(
-                          value,
-                          style: Theme.of(context).textTheme.headline3,
-                        ),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      currentValue = value ?? '';
-                    }),
-              ],
-            ),
-          );
+                  _dropDownButton(context),
+                ],
+              ),
+            );
+          });
         });
 
     return 'x';
+  }
+
+//todo:: currentValue'yu guncellemiyor --> mimari sikinti oldugunu dusunuyorum
+  DropdownButton<String> _dropDownButton(BuildContext context) {
+    return DropdownButton<String>(
+      menuMaxHeight: MediaQuery.of(context).size.height * 0.4,
+      value: _currentValue,
+      onChanged: (value) {
+        setState(() {
+          _currentValue = value.toString();
+        });
+      },
+      items: _locations.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(
+            value,
+            style: Theme.of(context).textTheme.headline3,
+          ),
+        );
+      }).toList(),
+    );
   }
 }
