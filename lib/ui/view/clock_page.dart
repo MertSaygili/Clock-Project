@@ -14,6 +14,8 @@ class ClockPageView extends StatefulWidget {
 }
 
 class _ClockPageViewState extends State<ClockPageView> with Time {
+  //todo:: add card dynimacly exct
+
   final DateFormat _dateFormat = DateFormat('Hms');
   late String _now;
   late final Timer _everySecond;

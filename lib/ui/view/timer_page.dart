@@ -16,7 +16,6 @@ class TimerPageView extends StatefulWidget {
 }
 
 class _TimerPageViewState extends State<TimerPageView> {
-  //todo:: zamani al ve elevated button icinde kullan
   final double _prefferedSize = 50;
   List<int> timeVal = [0, 0, 0];
 
@@ -60,7 +59,6 @@ class _TimerPageViewState extends State<TimerPageView> {
               ),
             ],
           ),
-          //todo:: elevated buttonu widget olarak cikar islemleri orada yap
           _CustomElevatedButton(timeVal: timeVal),
         ],
       ),

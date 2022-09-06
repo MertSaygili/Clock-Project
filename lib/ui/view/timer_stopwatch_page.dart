@@ -71,6 +71,7 @@ class _TimerStopwatchPVState extends State<TimerStopwatchPV> with Time {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              //todo:: set button styles and actions -> stop, keep counting ext
               ElevatedButton(onPressed: () {}, child: const Text('click1')),
               ElevatedButton(onPressed: () {}, child: const Text('click2')),
             ],
@@ -130,6 +131,7 @@ class _TimerStopwatchPVState extends State<TimerStopwatchPV> with Time {
   void _calculateIncreaseAmount() => _increaseAmount = 100 / _totalTime;
 
   // Time interface functions
+  //todo:: show alert after time is over!
   @override
   disposeTimer() {
     _everySecond.cancel();
