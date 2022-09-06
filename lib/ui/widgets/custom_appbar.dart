@@ -10,8 +10,12 @@ class CustomAppBar extends StatefulWidget with PreferredSizeWidget {
     required this.isScrolled,
     required this.title,
     required this.prefferedSize,
+    this.addFun,
+    this.settingsFun,
   }) : super(key: key);
 
+  final Function? addFun;
+  final Function? settingsFun;
   final bool isScrolled;
   final String title;
   final double prefferedSize;
@@ -66,7 +70,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        CustomIconButton(icon: _icons.addIcon, fun: null),
+        CustomIconButton(icon: _icons.addIcon, fun: widget.addFun),
         CustomIconButton(icon: _icons.settingsIcon, fun: null)
       ],
     );

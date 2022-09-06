@@ -11,6 +11,7 @@ class AlarmPageView extends StatefulWidget {
 }
 
 class _AlarmPageViewState extends State<AlarmPageView> {
+  //todo:: add card dynimacly exct
   final String textUnactiveAlarm = 'Tum alarmlar kapali';
   bool isAlarmOn = true;
 
