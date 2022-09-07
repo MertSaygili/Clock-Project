@@ -28,6 +28,10 @@ class FontSizes {
 }
 
 class PaddignItems {
+  final EdgeInsets paddingTopOnly = EdgeInsets.only(
+    top: PaddingValues().paddingNormal,
+  );
+
   final EdgeInsets paddingCard = EdgeInsets.only(
     top: PaddingValues().paddingSmall,
   );
