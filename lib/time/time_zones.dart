@@ -2,12 +2,22 @@ import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 
 class TimeZones {
-  Iterable<String> getLocations() {
+  TimeZones() {
     tz.initializeTimeZones();
+  }
 
+  Iterable<String> getLocations() {
     var locations = tz.timeZoneDatabase.locations;
     var locationList = locations.keys;
 
     return locationList;
+  }
+
+  String getTimeOfLocation(var location) {
+    var locationName = tz.getLocation(location);
+    var time = tz.TZDateTime.now(locationName).toString();
+    print(time);
+
+    return 's';
   }
 }

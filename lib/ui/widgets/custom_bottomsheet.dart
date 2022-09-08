@@ -14,8 +14,9 @@ class CustomSheet extends StatefulWidget {
 }
 
 class _CustomSheetState extends State<CustomSheet> {
-  final double _sizedBoxHeight = 40;
-  String _timeZoneName = '';
+  final double _sizedBoxHeight = 70;
+  String _timeZoneName = 'Africa/Abidjan';
+  String _time = '';
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class _CustomSheetState extends State<CustomSheet> {
         Padding(
           padding: PaddignItems().paddingTopOnly,
           child: SizedBox(
-            height: _sizedBoxHeight, // 40
+            height: _sizedBoxHeight, // 70
             child: Stack(
               children: [
                 _customDivider(context),
@@ -34,13 +35,8 @@ class _CustomSheetState extends State<CustomSheet> {
             ),
           ),
         ),
-
-        // _closeButton(),
-        // _customDivider(context),
-        Padding(
-          padding: PaddignItems().paddingTopOnly,
-          child: CustomDropdownButton(fun: _setTimezone),
-        )
+        CustomDropdownButton(fun: _setTimezone),
+        // Text(_timeZoneName, style: Theme.of(context).textTheme.headline3),
       ]),
     );
   }
@@ -54,7 +50,7 @@ class _CustomSheetState extends State<CustomSheet> {
         color: AllColors().colorGrey,
         thickness: 2,
         endIndent: MediaQuery.of(context).size.width * indentSize,
-        indent: MediaQuery.of(context).size.width * indentSize,
+        indent: MediaQuery.of(context).size.width * (indentSize / paddingRatio),
       ),
     );
   }
@@ -71,8 +67,9 @@ class _CustomSheetState extends State<CustomSheet> {
   }
 
   // functions
-  void _setTimezone(String newTimeZone) => setState(() {
-        _timeZoneName = newTimeZone;
+  void _setTimezone(String timeZoneName) => setState(() {
+        _timeZoneName = timeZoneName;
+        // _time = time;
       });
   void _closeSheet() => Navigator.of(context).pop<String>('null');
 }

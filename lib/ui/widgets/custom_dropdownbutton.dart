@@ -40,7 +40,10 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
           ),
         );
       }).toList(),
-      onChanged: (value) {
+      onChanged: (value) async {
+        String time = await _timeZones.getTimeOfLocation(value.toString());
+        // print('$value -> $time');
+
         setState(() {
           _currentItem = value.toString();
           widget.fun(_currentItem);
