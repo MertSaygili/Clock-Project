@@ -1,0 +1,9 @@
+// 08.09.2022 bugun yapacaklarim
+    -> bottom sheet in carpisi ile diver ayni line uzerinde olacak
+    -> kullanici dropdowndan bir sey sectiginde secili ulkenin saat'i sheetin altinda gosterilecek
+    -> gosterilen saatin altina 'ekle' adinda elevated button tanimlanacak
+    -> dropdown ile sheet icin sayfalar olusturulup oraya yapistirilacak
+    -> saat sheet altinda gosterilirken zaman akacak
+    -> zamanin akmasi icin Time interface'deki fonksiyonlarin Time parametresi almasi lazim
+    -> time parametreli bu fonksiyon ile ayni anda birden fazla saat uygulama gosterilebilecek
+    -> 
