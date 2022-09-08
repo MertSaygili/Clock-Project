@@ -23,21 +23,31 @@ class _CustomSheetState extends State<CustomSheet> {
     return SizedBox(
       height: MediaQuery.of(context).size.height * widget.size,
       child: Column(children: [
+        _stack(context),
+        CustomDropdownButton(fun: _setTimezone),
         Padding(
           padding: PaddignItems().paddingTopOnly,
-          child: SizedBox(
-            height: _sizedBoxHeight, // 70
-            child: Stack(
-              children: [
-                _customDivider(context),
-                _closeButton(),
-              ],
-            ),
+          child: Text(
+            'Current time: $_time in ${_timeZoneName.split('/')[1]}',
+            style: Theme.of(context).textTheme.subtitle2,
           ),
-        ),
-        CustomDropdownButton(fun: _setTimezone),
-        // Text(_timeZoneName, style: Theme.of(context).textTheme.headline3),
+        )
       ]),
+    );
+  }
+
+  Padding _stack(BuildContext context) {
+    return Padding(
+      padding: PaddignItems().paddingTopOnly,
+      child: SizedBox(
+        height: _sizedBoxHeight, // 70
+        child: Stack(
+          children: [
+            _customDivider(context),
+            _closeButton(),
+          ],
+        ),
+      ),
     );
   }
 
@@ -67,9 +77,9 @@ class _CustomSheetState extends State<CustomSheet> {
   }
 
   // functions
-  void _setTimezone(String timeZoneName) => setState(() {
+  void _setTimezone(String timeZoneName, String time) => setState(() {
         _timeZoneName = timeZoneName;
-        // _time = time;
+        _time = time;
       });
   void _closeSheet() => Navigator.of(context).pop<String>('null');
 }

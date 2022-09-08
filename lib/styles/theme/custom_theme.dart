@@ -53,6 +53,12 @@ class CustomTheme {
         letterSpacing: -1,
         color: _colors.colorGrey,
       ),
+      subtitle2: TextStyle(
+        fontSize: _fontSizes.sizeNormal,
+        fontWeight: FontWeight.w300,
+        letterSpacing: -2,
+        color: _colors.colorDarkGrey,
+      ),
       button: TextStyle(
         fontSize: _fontSizes.sizeNormal,
         fontWeight: FontWeight.w400,

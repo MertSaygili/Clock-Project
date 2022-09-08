@@ -16,8 +16,13 @@ class TimeZones {
   String getTimeOfLocation(var location) {
     var locationName = tz.getLocation(location);
     var time = tz.TZDateTime.now(locationName).toString();
-    print(time);
 
-    return 's';
+    return getTimeProperly(time);
+  }
+
+  String getTimeProperly(String oldTime) {
+    var tempTime = oldTime.split(' ')[1];
+    var newTime = tempTime.split('.')[0];
+    return newTime;
   }
 }

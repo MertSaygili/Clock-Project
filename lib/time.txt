@@ -1,0 +1,18 @@
+I/flutter (23296): 2022-09-08 05:00:29.468540-1000
+I/flutter (23296): 2022-09-09 01:00:29.469039+1000
+I/flutter (23296): 2022-09-08 05:00:29.469262-1000
+I/flutter (23296): 2022-09-09 03:00:29.469456+1200
+I/flutter (23296): 2022-09-09 04:00:29.469727+1300
+I/flutter (23296): 2022-09-09 03:00:29.470357+1200
+I/flutter (23296): 2022-09-09 03:00:29.470726+1200
+I/flutter (23296): 2022-09-08 07:00:29.471053-0800
+I/flutter (23296): 2022-09-08 08:00:29.471225-0700
+I/flutter (23296): 2022-09-08 10:00:29.471445-0500
+I/flutter (23296): 2022-09-08 11:00:29.471814-0400
+I/flutter (23296): 2022-09-08 05:00:29.472059-1000
+I/flutter (23296): 2022-09-08 09:00:29.472809-0600
+
+
+ornek timezonelar 
+hepsine baktigimizda String olarak once bosulaga gore bolebilirim bu sekilde elimde olan tarih kismini silmis olurum
+ardindan ise noktaya bolerek zamani alirim

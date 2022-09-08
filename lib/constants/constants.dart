@@ -12,6 +12,7 @@ class AllColors {
   final Color colorTransparent = Colors.transparent;
   final Color colorBlack = Colors.black;
   final Color colorGrey = Colors.grey;
+  final Color colorDarkGrey = const Color.fromARGB(255, 96, 95, 95);
   final Color colorLightGray = const Color.fromARGB(255, 177, 177, 177);
   final Color colordeepPurpleAccent = Colors.deepPurpleAccent;
   final Color colorWhite = Colors.white;

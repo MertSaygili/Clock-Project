@@ -9,6 +9,6 @@ void main() {
     var location = tz.getLocation(locations.keys.elementAt(i));
     var timeNow = tz.TZDateTime.now(location);
 
-    print('${location} ${timeNow}');
+    print('${timeNow}');
   }
 }
