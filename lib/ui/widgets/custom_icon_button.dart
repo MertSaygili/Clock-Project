@@ -20,6 +20,7 @@ class _CustomIconButtonState extends State<CustomIconButton> {
         widget.fun!();
       },
       icon: widget.icon,
+      alignment: Alignment.center,
       padding: EdgeInsets.zero,
       iconSize: FontSizes().sizeMaxXX,
       color: AllColors().colorBlack,

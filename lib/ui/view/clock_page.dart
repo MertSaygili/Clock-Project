@@ -56,6 +56,7 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
     double elevation = 15;
 
     final result = await showModalBottomSheet(
+        enableDrag: false,
         isDismissible: false,
         isScrollControlled: false,
         elevation: elevation,

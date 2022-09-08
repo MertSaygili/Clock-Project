@@ -14,6 +14,7 @@ class CustomSheet extends StatefulWidget {
 }
 
 class _CustomSheetState extends State<CustomSheet> {
+  final double _sizedBoxHeight = 40;
   String _timeZoneName = '';
 
   @override
@@ -21,8 +22,21 @@ class _CustomSheetState extends State<CustomSheet> {
     return SizedBox(
       height: MediaQuery.of(context).size.height * widget.size,
       child: Column(children: [
-        _closeButton(),
-        _customDivider(context),
+        Padding(
+          padding: PaddignItems().paddingTopOnly,
+          child: SizedBox(
+            height: _sizedBoxHeight, // 40
+            child: Stack(
+              children: [
+                _customDivider(context),
+                _closeButton(),
+              ],
+            ),
+          ),
+        ),
+
+        // _closeButton(),
+        // _customDivider(context),
         Padding(
           padding: PaddignItems().paddingTopOnly,
           child: CustomDropdownButton(fun: _setTimezone),
@@ -32,27 +46,33 @@ class _CustomSheetState extends State<CustomSheet> {
   }
 
   Padding _customDivider(BuildContext context) {
+    double indentSize = 0.2;
+    double paddingRatio = 2.5;
     return Padding(
-      padding: PaddignItems().paddingTopOnly,
+      padding: PaddignItems().paddingTopOnly / paddingRatio,
       child: Divider(
+        color: AllColors().colorGrey,
         thickness: 2,
-        endIndent: MediaQuery.of(context).size.width * 0.2,
-        indent: MediaQuery.of(context).size.width * 0.2,
+        endIndent: MediaQuery.of(context).size.width * indentSize,
+        indent: MediaQuery.of(context).size.width * indentSize,
       ),
     );
   }
 
-  Align _closeButton() {
-    return Align(
-      alignment: Alignment.topRight,
-      child: CustomIconButton(
-        icon: IconItems().closeIcon,
-        fun: _closeSheet,
-      ),
+  Positioned _closeButton() {
+    double zero = 0;
+    double height = 30;
+    return Positioned(
+      right: zero,
+      top: zero,
+      height: height,
+      child: CustomIconButton(icon: IconItems().closeIcon, fun: _closeSheet),
     );
   }
 
-  void _setTimezone(String newTimeZone) =>
-      setState(() => _timeZoneName = newTimeZone);
+  // functions
+  void _setTimezone(String newTimeZone) => setState(() {
+        _timeZoneName = newTimeZone;
+      });
   void _closeSheet() => Navigator.of(context).pop<String>('null');
 }
