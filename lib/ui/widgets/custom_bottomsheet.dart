@@ -14,7 +14,8 @@ class CustomSheet extends StatefulWidget {
 }
 
 class _CustomSheetState extends State<CustomSheet> {
-  final double _sizedBoxHeight = 70;
+  final double _sizedBoxHeight = 40;
+  final String _add = 'Ekle';
   String _timeZoneName = 'Africa/Abidjan';
   String _time = '';
 
@@ -22,31 +23,31 @@ class _CustomSheetState extends State<CustomSheet> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).size.height * widget.size,
-      child: Column(children: [
+      child:
+          Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         _stack(context),
         CustomDropdownButton(fun: _setTimezone),
-        Padding(
-          padding: PaddignItems().paddingTopOnly,
-          child: Text(
-            'Current time: $_time in ${_timeZoneName.split('/')[1]}',
-            style: Theme.of(context).textTheme.subtitle2,
-          ),
-        )
+        _timeText(context),
+        ElevatedButton(onPressed: () {}, child: Text(_add)),
       ]),
     );
   }
 
-  Padding _stack(BuildContext context) {
-    return Padding(
-      padding: PaddignItems().paddingTopOnly,
-      child: SizedBox(
-        height: _sizedBoxHeight, // 70
-        child: Stack(
-          children: [
-            _customDivider(context),
-            _closeButton(),
-          ],
-        ),
+  Text _timeText(BuildContext context) {
+    return Text(
+      'Current time: $_time in ${_timeZoneName.split('/')[1]}',
+      style: Theme.of(context).textTheme.subtitle2,
+    );
+  }
+
+  SizedBox _stack(BuildContext context) {
+    return SizedBox(
+      height: _sizedBoxHeight, // 40
+      child: Stack(
+        children: [
+          _customDivider(context),
+          _closeButton(),
+        ],
       ),
     );
   }

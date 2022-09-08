@@ -64,7 +64,7 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
             borderRadius: BorderRadius.vertical(top: Radius.circular(bRadius))),
         context: context,
         builder: (context) {
-          return const CustomSheet(size: 0.6);
+          return const CustomSheet(size: 0.5);
         });
   }
 
