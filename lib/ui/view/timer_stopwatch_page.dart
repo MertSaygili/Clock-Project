@@ -28,10 +28,15 @@ class TimerStopwatchPV extends StatefulWidget {
 }
 
 class _TimerStopwatchPVState extends State<TimerStopwatchPV> with Time {
-  late final Timer _everySecond;
+  final String _textClear = 'Sifirla';
+  final String _textDur = 'Dur';
+  final String _textSurdur = 'Surdur';
+
+  late Timer _everySecond;
   late final _increaseAmount;
   late int _totalTime;
   late String _nextTime;
+  late String _textTemp;
 
   final DateFormat _dateFormat = DateFormat('Hms');
   final double _prefferedSize = 50;
@@ -48,6 +53,7 @@ class _TimerStopwatchPVState extends State<TimerStopwatchPV> with Time {
   @override
   void initState() {
     super.initState();
+    _textTemp = _textDur;
     _calculateTotalTime();
     _calculateNextTime();
     _calculateIncreaseAmount();
@@ -58,7 +64,17 @@ class _TimerStopwatchPVState extends State<TimerStopwatchPV> with Time {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appBar(),
+      appBar: CustomSettingsAppBar(
+        prefferedSize: _prefferedSize,
+        customIconButton: CustomIconButton(
+          icon: IconItems().addIcon,
+          fun: null,
+        ),
+        customIconButton2: CustomIconButton(
+          icon: IconItems().settingsIcon,
+          fun: null,
+        ),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -71,26 +87,30 @@ class _TimerStopwatchPVState extends State<TimerStopwatchPV> with Time {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              //todo:: set button styles and actions -> stop, keep counting ext
-              ElevatedButton(onPressed: () {}, child: const Text('click1')),
-              ElevatedButton(onPressed: () {}, child: const Text('click2')),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AllColors().colorRed,
+                ),
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text(_textClear),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    if (_textTemp.compareTo(_textDur) == 0) {
+                      disposeTimer();
+                      _textTemp = _textSurdur;
+                    } else {
+                      updateTime();
+                      _textTemp = _textDur;
+                    }
+                  });
+                },
+                child: Text(_textTemp),
+              ),
             ],
           )
         ],
-      ),
-    );
-  }
-
-  CustomSettingsAppBar _appBar() {
-    return CustomSettingsAppBar(
-      prefferedSize: _prefferedSize,
-      customIconButton: CustomIconButton(
-        icon: IconItems().addIcon,
-        fun: null,
-      ),
-      customIconButton2: CustomIconButton(
-        icon: IconItems().settingsIcon,
-        fun: null,
       ),
     );
   }

@@ -11,4 +11,5 @@
 
 // 09.09.2022 bugun yapacaklarim
     -> Zamanlayicinin ikinci kisminda bulunan butonlarin action kisimlarini ayarla
-    -> Saat ve alarm kisiminda hafiza ekleme olayini hallet, simule et
+    -> Saat ve alarm kisiminda hafiza ekleme olayini hallet, simule et  
+    -> baskaya sayfaya gittigimizde appbarin sol ustune olusturulan geri tusunu ayarla
