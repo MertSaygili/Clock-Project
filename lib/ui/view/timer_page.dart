@@ -2,11 +2,11 @@
 
 import 'package:clock_project/ui/view/timer_stopwatch_page.dart';
 import 'package:flutter/material.dart';
-import 'package:numberpicker/numberpicker.dart';
 
 import '../../constants/constants.dart';
 import '../widgets/custom_icon_button.dart';
 import '../widgets/custom_timer_appbar.dart';
+import '../widgets/custom_timercolumn.dart';
 
 class TimerPageView extends StatefulWidget {
   const TimerPageView({Key? key}) : super(key: key);
@@ -17,51 +17,62 @@ class TimerPageView extends StatefulWidget {
 
 class _TimerPageViewState extends State<TimerPageView> {
   final double _prefferedSize = 50;
-  List<int> timeVal = [0, 0, 0];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomSettingsAppBar(
         prefferedSize: _prefferedSize,
-        customIconButton: CustomIconButton(
-          icon: IconItems().addIcon,
-          fun: null,
-        ),
-        customIconButton2: CustomIconButton(
-          icon: IconItems().settingsIcon,
-          fun: null,
-        ),
+        customIconButton:
+            CustomIconButton(icon: IconItems().addIcon, fun: null),
+        customIconButton2:
+            CustomIconButton(icon: IconItems().settingsIcon, fun: null),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _TimerColumn(
-                text: Texts().textSaat,
-                minValue: 0,
-                maxValue: 99,
-                funs: [setHour, setMinute, setSecond],
-              ),
-              _TimerColumn(
-                text: Texts().textDakika,
-                minValue: 0,
-                maxValue: 59,
-                funs: [setHour, setMinute, setSecond],
-              ),
-              _TimerColumn(
-                text: Texts().textSaniye,
-                minValue: 0,
-                maxValue: 59,
-                funs: [setHour, setMinute, setSecond],
-              ),
-            ],
-          ),
-          _CustomElevatedButton(timeVal: timeVal),
-        ],
-      ),
+      body: const _Body(),
+    );
+  }
+}
+
+class _Body extends StatefulWidget {
+  const _Body();
+
+  @override
+  State<_Body> createState() => __BodyState();
+}
+
+class __BodyState extends State<_Body> {
+  List<int> timeVal = [0, 0, 0];
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            CustomTimerColumn(
+              text: Texts().textSaat,
+              minValue: 0,
+              maxValue: 99,
+              funs: [setHour, setMinute, setSecond],
+            ),
+            CustomTimerColumn(
+              text: Texts().textDakika,
+              minValue: 0,
+              maxValue: 59,
+              funs: [setHour, setMinute, setSecond],
+            ),
+            CustomTimerColumn(
+              text: Texts().textSaniye,
+              minValue: 0,
+              maxValue: 59,
+              funs: [setHour, setMinute, setSecond],
+            ),
+          ],
+        ),
+        _CustomElevatedButton(timeVal: timeVal),
+      ],
     );
   }
 
@@ -125,79 +136,4 @@ class _CustomElevatedButtonState extends State<_CustomElevatedButton> {
     }
     return false;
   }
-}
-
-class _TimerColumn extends StatefulWidget {
-  const _TimerColumn({
-    Key? key,
-    required this.text,
-    required this.minValue,
-    required this.maxValue,
-    required this.funs,
-  }) : super(key: key);
-
-  final List<Function> funs;
-  final String text;
-  final int minValue;
-  final int maxValue;
-
-  @override
-  State<_TimerColumn> createState() => _TimerColumnState();
-}
-
-class _TimerColumnState extends State<_TimerColumn> {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        _Text(text: widget.text),
-        NumberPicker(
-          fun: setTime,
-          minValue: widget.minValue,
-          maxValue: widget.maxValue,
-        ),
-      ],
-    );
-  }
-
-  void setTime(int val) {
-    List<String> timeNames = [
-      Texts().textSaat,
-      Texts().textDakika,
-      Texts().textSaniye
-    ];
-    setState(() {
-      for (var i = 0; i < timeNames.length; i++) {
-        if (widget.text.compareTo(timeNames[i]) == 0) {
-          widget.funs[i](val);
-          break;
-        }
-      }
-    });
-  }
-}
-
-class _Text extends StatelessWidget {
-  const _Text({
-    Key? key,
-    required this.text,
-  }) : super(key: key);
-
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: Theme.of(context).textTheme.headline2,
-    );
-  }
-}
-
-class Texts {
-  final String textSaat = 'Saat';
-  final String textDakika = 'Dakika';
-  final String textSaniye = 'Saniye';
-  final String textBaslat = 'Baslat';
 }
