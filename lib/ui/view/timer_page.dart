@@ -2,11 +2,11 @@
 
 import 'package:clock_project/ui/view/timer_stopwatch_page.dart';
 import 'package:flutter/material.dart';
+import 'package:numberpicker/numberpicker.dart';
 
 import '../../constants/constants.dart';
 import '../widgets/custom_icon_button.dart';
 import '../widgets/custom_timer_appbar.dart';
-import 'package:numberpicker/numberpicker.dart';
 
 class TimerPageView extends StatefulWidget {
   const TimerPageView({Key? key}) : super(key: key);
@@ -152,7 +152,7 @@ class _TimerColumnState extends State<_TimerColumn> {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         _Text(text: widget.text),
-        _NumberPicker(
+        NumberPicker(
           fun: setTime,
           minValue: widget.minValue,
           maxValue: widget.maxValue,
@@ -191,45 +191,6 @@ class _Text extends StatelessWidget {
     return Text(
       text,
       style: Theme.of(context).textTheme.headline2,
-    );
-  }
-}
-
-class _NumberPicker extends StatefulWidget {
-  const _NumberPicker({
-    Key? key,
-    required this.fun,
-    required this.minValue,
-    required this.maxValue,
-  }) : super(key: key);
-
-  final Function fun;
-  final int minValue;
-  final int maxValue;
-
-  @override
-  State<_NumberPicker> createState() => _NumberPickerState();
-}
-
-class _NumberPickerState extends State<_NumberPicker> {
-  int _currentValue = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    return NumberPicker(
-      step: 1,
-      itemCount: 3,
-      selectedTextStyle: Theme.of(context).textTheme.caption,
-      textStyle: Theme.of(context).textTheme.subtitle1,
-      minValue: widget.minValue,
-      maxValue: widget.maxValue,
-      value: _currentValue,
-      onChanged: (value) {
-        setState(() {
-          _currentValue = value;
-          widget.fun(value);
-        });
-      },
     );
   }
 }

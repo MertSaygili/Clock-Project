@@ -4,6 +4,11 @@
     -> gosterilen saatin altina 'ekle' adinda elevated button tanimlanacak -> TAMAM
     -> dropdown ile sheet icin sayfalar olusturulup oraya yapistirilacak -> TAMAM
     -> saat sheet altinda gosterilirken zaman akacak -> OLMASA OLUR GIBIME GELIYOR EKLEYE BASTIKTAN SONRA GOSTERIRKEN HEPSI ICIN FARKLI BIR TIME TANIMLANABILIR
-    -> zamanin akmasi icin Time interface'deki fonksiyonlarin Time parametresi almasi lazim
-    -> time parametreli bu Time interface fonksiyonlari ile ayni anda birden fazla saat uygulama gosterilebilecek
+    -> zamanin akmasi icin Time interface'deki fonksiyonlarin Time parametresi almasi lazim -> YAPILMADI
+    -> time parametreli bu Time interface fonksiyonlari ile ayni anda birden fazla saat uygulama gosterilebilecek -> YAPILMADI
     -> 
+
+
+// 09.09.2022 bugun yapacaklarim
+    -> Zamanlayicinin ikinci kisminda bulunan butonlarin action kisimlarini ayarla
+    -> Saat ve alarm kisiminda hafiza ekleme olayini hallet, simule et
