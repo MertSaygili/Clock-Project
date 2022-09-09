@@ -20,6 +20,10 @@ class TimeZones {
     return getTimeProperly(time);
   }
 
+  String getLocation(var location) {
+    return tz.getLocation(location).toString();
+  }
+
   String getTimeProperly(String oldTime) {
     var tempTime = oldTime.split(' ')[1];
     var newTime = tempTime.split('.')[0];

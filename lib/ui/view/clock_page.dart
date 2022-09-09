@@ -20,7 +20,8 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
   late final SharedManager _sharedManager;
   late final Timer _everySecond;
   late String _now;
-  late List<String> _countries;
+  List<String> _countries = [];
+  List<String> _times = [];
   final DateFormat _dateFormat = DateFormat('Hms');
 
   @override
@@ -47,13 +48,15 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
         prefferedSize: MediaQuery.of(context).size.height * 0.35,
         addFun: _bottomSheet,
       ),
-      body: ListView.builder(itemBuilder: (context, index) {
-        return const CustomClockCard(
-          title: 'Istanbul',
-          information: 'Yerel saat',
-          clock: '18.20',
-        );
-      }),
+      body: ListView.builder(
+          itemCount: 5,
+          itemBuilder: (context, index) {
+            return const CustomClockCard(
+              title: 'Istanbul',
+              information: 'Yerel saat',
+              clock: '18.20',
+            );
+          }),
     );
   }
 
@@ -74,13 +77,16 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
         });
 
     if (result.toString().compareTo('') != 0) {
-      // means user send data
-
+      // add to shared preferences
+      // _countries.add(TimeZones().getLocation(result));
+      // _sharedManager.setStringList(SharedKeys.cities, _countries);
     }
   }
 
-  void getCountries() {
-    _countries = _sharedManager.getStringList(SharedKeys.cities);
+  void _getCountries() {
+    setState(() {
+      _countries = _sharedManager.getStringList(SharedKeys.cities);
+    });
   }
 
   // current time functions
@@ -88,7 +94,7 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
   setTime() {
     _now = _dateFormat.format(DateTime.now()).toString();
     for (var i = 0; i < _countries.length; i++) {
-      TimeZones().getTimeOfLocation(_countries[i]);
+      _times[i] = TimeZones().getTimeOfLocation(_countries[i]);
     }
   }
 

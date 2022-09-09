@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_print
-import 'package:timezone/timezone.dart' as tz;
-import 'package:timezone/data/latest.dart' as tz;
+// import 'package:timezone/timezone.dart' as tz;
+// import 'package:timezone/data/latest.dart' as tz;
 
 void main() {
   // tz.initializeTimeZones();
