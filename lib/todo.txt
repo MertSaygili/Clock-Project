@@ -10,6 +10,10 @@
 
 
 // 09.09.2022 bugun yapacaklarim
-    -> Zamanlayicinin ikinci kisminda bulunan butonlarin action kisimlarini ayarla
+    -> Zamanlayicinin ikinci kisminda bulunan butonlarin action kisimlarini ayarla -> TAMAM
     -> Saat ve alarm kisiminda hafiza ekleme olayini hallet, simule et  
     -> baskaya sayfaya gittigimizde appbarin sol ustune olusturulan geri tusunu ayarla
+
+    Shared preferences kullanirken sahip olunan listeye eleman eklemem gerektigi zaman once 
+    listeyi cekip ardindan cektigim listeyi guncelleyip geri shared preferences ile locale 
+    atacagim ayni islemlerin tersini ise silme islemi icin kullanacagim
