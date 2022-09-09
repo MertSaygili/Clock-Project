@@ -6,6 +6,7 @@ class IconItems {
   final Icon addIcon = const Icon(Icons.add);
   final Icon settingsIcon = const Icon(Icons.format_list_bulleted_rounded);
   final Icon closeIcon = const Icon(Icons.close);
+  final Icon backIcon = const Icon(Icons.arrow_back);
 }
 
 class AllColors {

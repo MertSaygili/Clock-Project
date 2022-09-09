@@ -74,6 +74,10 @@ class _TimerStopwatchPVState extends State<TimerStopwatchPV> with Time {
           icon: IconItems().settingsIcon,
           fun: null,
         ),
+        customIconButton3: CustomIconButton(
+          icon: IconItems().backIcon,
+          fun: goBack,
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -84,34 +88,39 @@ class _TimerStopwatchPVState extends State<TimerStopwatchPV> with Time {
             clickTime: _everyClick,
             nextTime: _nextTime,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AllColors().colorRed,
-                ),
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text(_textClear),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    if (_textTemp.compareTo(_textDur) == 0) {
-                      disposeTimer();
-                      _textTemp = _textSurdur;
-                    } else {
-                      updateTime();
-                      _textTemp = _textDur;
-                    }
-                  });
-                },
-                child: Text(_textTemp),
-              ),
-            ],
-          )
+          _customElevatedButtons(context),
         ],
       ),
+    );
+  }
+
+  Row _customElevatedButtons(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AllColors().colorRed,
+          ),
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text(_textClear),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            setState(() {
+              if (_textTemp.compareTo(_textDur) == 0) {
+                disposeTimer();
+                _textTemp = _textSurdur;
+              } else {
+                updateTime();
+                _calculateNextTime();
+                _textTemp = _textDur;
+              }
+            });
+          },
+          child: Text(_textTemp),
+        ),
+      ],
     );
   }
 
@@ -149,6 +158,8 @@ class _TimerStopwatchPVState extends State<TimerStopwatchPV> with Time {
   }
 
   void _calculateIncreaseAmount() => _increaseAmount = 100 / _totalTime;
+
+  void goBack() => Navigator.of(context).pop();
 
   // Time interface functions
   //todo:: show alert after time is over!
