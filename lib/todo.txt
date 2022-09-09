@@ -11,9 +11,12 @@
 
 // 09.09.2022 bugun yapacaklarim
     -> Zamanlayicinin ikinci kisminda bulunan butonlarin action kisimlarini ayarla -> TAMAM
-    -> Saat ve alarm kisiminda hafiza ekleme olayini hallet, simule et  
-    -> baskaya sayfaya gittigimizde appbarin sol ustune olusturulan geri tusunu ayarla
+    -> Saat ve alarm kisiminda hafiza ekleme olayini hallet, simule et  -> SHARED PREFERENCES KULLANACAGIM
+    -> baskaya sayfaya gittigimizde appbarin sol ustune olusturulan geri tusunu ayarla -> BIRAZDAN ILK ONA BAKAYIM, MOLA VERECEGIM
 
     Shared preferences kullanirken sahip olunan listeye eleman eklemem gerektigi zaman once 
     listeyi cekip ardindan cektigim listeyi guncelleyip geri shared preferences ile locale 
     atacagim ayni islemlerin tersini ise silme islemi icin kullanacagim
+    
+    Diger saveleme paketlerine baktim sonuc olarak SharedPreferences ile devam edicem ama uygulamaya reload atildigi zaman 
+    datalar kayboluyor--> uzucu

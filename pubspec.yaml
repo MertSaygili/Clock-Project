@@ -19,10 +19,11 @@ dependencies:
   # circular indicator
   percent_indicator: ^4.2.2
 
-  #time zone
+  # time zone
   timezone: ^0.8.0
 
-
+  # shared preferences
+  shared_preferences: ^2.0.15
 
   cupertino_icons: ^1.0.2
 
