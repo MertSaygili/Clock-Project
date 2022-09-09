@@ -44,7 +44,7 @@ class _CustomDropdownButtonState extends State<CustomDropdownButton> {
         String time = _timeZones.getTimeOfLocation(value);
         setState(() {
           _currentItem = value.toString();
-          widget.fun(_currentItem, time);
+          widget.fun(_currentItem, time, value);
         });
       },
     );

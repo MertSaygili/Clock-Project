@@ -1,3 +1,4 @@
+import 'package:clock_project/service/shared/shared_manager.dart';
 import 'package:clock_project/time/time.dart';
 import 'package:clock_project/ui/widgets/custom_appbar.dart';
 import 'package:clock_project/ui/widgets/custom_bottomsheet.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
 
+import '../../time/time_zones.dart';
 import '../widgets/custom_clock_card.dart';
 
 class ClockPageView extends StatefulWidget {
@@ -15,13 +17,17 @@ class ClockPageView extends StatefulWidget {
 }
 
 class _ClockPageViewState extends State<ClockPageView> with Time {
+  late final SharedManager _sharedManager;
   late final Timer _everySecond;
   late String _now;
+  late List<String> _countries;
   final DateFormat _dateFormat = DateFormat('Hms');
 
   @override
   void initState() {
     super.initState();
+    _sharedManager = SharedManager();
+    _sharedManager.init();
     setTime();
     updateTime();
   }
@@ -55,7 +61,7 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
     double bRadius = 15;
     double elevation = 15;
 
-    final result = await showModalBottomSheet(
+    var result = await showModalBottomSheet(
         enableDrag: false,
         isDismissible: false,
         isScrollControlled: false,
@@ -66,12 +72,24 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
         builder: (context) {
           return const CustomSheet(size: 0.5);
         });
+
+    if (result.toString().compareTo('') != 0) {
+      // means user send data
+
+    }
+  }
+
+  void getCountries() {
+    _countries = _sharedManager.getStringList(SharedKeys.cities);
   }
 
   // current time functions
   @override
   setTime() {
     _now = _dateFormat.format(DateTime.now()).toString();
+    for (var i = 0; i < _countries.length; i++) {
+      TimeZones().getTimeOfLocation(_countries[i]);
+    }
   }
 
   @override

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 
 import '../../constants/constants.dart';
@@ -16,6 +18,7 @@ class CustomSheet extends StatefulWidget {
 class _CustomSheetState extends State<CustomSheet> {
   final double _sizedBoxHeight = 40;
   final String _add = 'Ekle';
+  late var _location;
   String _timeZoneName = 'Africa/Abidjan';
   String _time = '';
 
@@ -23,13 +26,15 @@ class _CustomSheetState extends State<CustomSheet> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).size.height * widget.size,
-      child:
-          Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        _stack(context),
-        CustomDropdownButton(fun: _setTimezone),
-        _timeText(context),
-        ElevatedButton(onPressed: () {}, child: Text(_add)),
-      ]),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _stack(context),
+          CustomDropdownButton(fun: _setTimezone),
+          _timeText(context),
+          ElevatedButton(onPressed: () => _addData(), child: Text(_add)),
+        ],
+      ),
     );
   }
 
@@ -78,9 +83,12 @@ class _CustomSheetState extends State<CustomSheet> {
   }
 
   // functions
-  void _setTimezone(String timeZoneName, String time) => setState(() {
+  void _setTimezone(String timeZoneName, String time, var location) =>
+      setState(() {
         _timeZoneName = timeZoneName;
         _time = time;
+        _location = location;
       });
-  void _closeSheet() => Navigator.of(context).pop<String>('null');
+  void _closeSheet() => Navigator.of(context).pop<String>('');
+  void _addData() => Navigator.of(context).pop<String>(_location);
 }
