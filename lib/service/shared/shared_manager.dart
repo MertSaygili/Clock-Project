@@ -17,7 +17,6 @@ class SharedManager {
   }
 
   List<String> getStringList(SharedKeys key) {
-    _checkPreferences();
     return preferences?.getStringList(key.name) ?? [];
   }
 

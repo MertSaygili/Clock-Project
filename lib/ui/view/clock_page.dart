@@ -19,8 +19,8 @@ class ClockPageView extends StatefulWidget {
 class _ClockPageViewState extends State<ClockPageView> with Time {
   late final SharedManager _sharedManager;
   late final Timer _everySecond;
+  late List<String> _countries;
   late String _now;
-  List<String> _countries = [];
   List<String> _times = [];
   final DateFormat _dateFormat = DateFormat('Hms');
 
@@ -93,9 +93,9 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
   @override
   setTime() {
     _now = _dateFormat.format(DateTime.now()).toString();
-    for (var i = 0; i < _countries.length; i++) {
-      _times[i] = TimeZones().getTimeOfLocation(_countries[i]);
-    }
+    // for (var i = 0; i < _countries.length; i++) {
+    //   _times[i] = TimeZones().getTimeOfLocation(_countries[i]);
+    // }
   }
 
   @override
