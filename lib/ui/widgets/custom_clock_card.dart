@@ -1,4 +1,5 @@
 import 'package:clock_project/constants/constants.dart';
+import 'package:clock_project/ui/widgets/custom_dialog_box.dart';
 import 'package:flutter/material.dart';
 
 class CustomClockCard extends StatefulWidget {
@@ -6,9 +7,11 @@ class CustomClockCard extends StatefulWidget {
       {Key? key,
       required this.title,
       required this.information,
-      required this.clock})
+      required this.clock,
+      required this.fun})
       : super(key: key);
 
+  final Function fun;
   final String title;
   final String information;
   final String clock;
@@ -44,6 +47,15 @@ class _CustomClockCardState extends State<CustomClockCard> {
             widget.clock,
             Theme.of(context).textTheme.headline2,
           ),
+          onTap: () async {
+            final result = await showDialog(
+                context: context,
+                builder: (context) {
+                  return CustomDialogs(context).alert;
+                });
+
+            widget.fun(result, widget.title);
+          },
         ),
       ),
     );

@@ -53,6 +53,7 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
               title: _countries[index],
               information: 'Yerel saat',
               clock: _times[index],
+              fun: _deleteCard,
             );
           }),
     );
@@ -90,6 +91,14 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
     _sharedManager.init();
     _countries = _sharedManager.getStringList(SharedKeys.countries);
     _times = _sharedManager.getStringList(SharedKeys.times);
+  }
+
+  void _deleteCard(bool result, String name) {
+    if (result == true) {
+      int timeIndex = _countries.indexOf(name);
+      _countries.remove(name);
+      _times.removeAt(timeIndex);
+    }
   }
 
   // current time functions
