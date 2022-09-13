@@ -5,7 +5,6 @@ import 'package:clock_project/ui/widgets/custom_bottomsheet.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
-
 import '../../time/time_zones.dart';
 import '../widgets/custom_clock_card.dart';
 
@@ -20,15 +19,14 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
   late final SharedManager _sharedManager;
   late final Timer _everySecond;
   late List<String> _countries;
+  late List<String> _times;
   late String _now;
-  List<String> _times = [];
   final DateFormat _dateFormat = DateFormat('Hms');
 
   @override
   void initState() {
     super.initState();
-    _sharedManager = SharedManager();
-    _sharedManager.init();
+    _setSharedManager();
     setTime();
     updateTime();
   }
@@ -49,12 +47,12 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
         addFun: _bottomSheet,
       ),
       body: ListView.builder(
-          itemCount: 5,
+          itemCount: _countries.length,
           itemBuilder: (context, index) {
-            return const CustomClockCard(
-              title: 'Istanbul',
+            return CustomClockCard(
+              title: _countries[index],
               information: 'Yerel saat',
-              clock: '18.20',
+              clock: _times[index],
             );
           }),
     );
@@ -77,25 +75,30 @@ class _ClockPageViewState extends State<ClockPageView> with Time {
         });
 
     if (result.toString().compareTo('') != 0) {
-      // add to shared preferences
-      // _countries.add(TimeZones().getLocation(result));
-      // _sharedManager.setStringList(SharedKeys.cities, _countries);
+      final List<String> tempCountries = _countries;
+      tempCountries.add(result);
+      _sharedManager.setStringList(SharedKeys.countries, tempCountries);
+
+      final List<String> times = _times;
+      times.add(TimeZones().getTimeOfLocation(result));
+      _sharedManager.setStringList(SharedKeys.times, times);
     }
   }
 
-  void _getCountries() {
-    setState(() {
-      _countries = _sharedManager.getStringList(SharedKeys.cities);
-    });
+  void _setSharedManager() {
+    _sharedManager = SharedManager();
+    _sharedManager.init();
+    _countries = _sharedManager.getStringList(SharedKeys.countries);
+    _times = _sharedManager.getStringList(SharedKeys.times);
   }
 
   // current time functions
   @override
   setTime() {
     _now = _dateFormat.format(DateTime.now()).toString();
-    // for (var i = 0; i < _countries.length; i++) {
-    //   _times[i] = TimeZones().getTimeOfLocation(_countries[i]);
-    // }
+    for (var i = 0; i < _times.length; i++) {
+      _times[i] = TimeZones().getTimeOfLocation(_countries[i]);
+    }
   }
 
   @override

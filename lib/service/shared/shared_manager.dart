@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum SharedKeys { cities, alarms }
+enum SharedKeys { countries, times }
 
 class SharedManager {
   SharedPreferences? preferences;
