@@ -42,6 +42,8 @@ class _CustomSheetState extends State<CustomSheet> {
     return Text(
       'Current time: $_time in ${_timeZoneName.split('/')[1]}',
       style: Theme.of(context).textTheme.subtitle2,
+      maxLines: 1,
+      overflow: TextOverflow.fade,
     );
   }
 

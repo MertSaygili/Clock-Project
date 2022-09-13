@@ -12,14 +12,20 @@ class CustomDropdownButton extends StatefulWidget {
 
 class _CustomDropdownButtonState extends State<CustomDropdownButton> {
   late final Iterable<String> _locations;
-  final TimeZones _timeZones = TimeZones();
+  late final TimeZones _timeZones;
 
   late String _currentItem;
 
   @override
   void initState() {
     super.initState();
+    _setTimeZones();
     _setLocations();
+  }
+
+  void _setTimeZones() {
+    _timeZones = TimeZones();
+    _timeZones.init();
   }
 
   void _setLocations() {

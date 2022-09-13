@@ -20,3 +20,8 @@
     
     Diger saveleme paketlerine baktim sonuc olarak SharedPreferences ile devam edicem ama uygulamaya reload atildigi zaman 
     datalar kayboluyor--> uzucu
+
+
+
+
+    /// timezone iki kere cagrilmiyor

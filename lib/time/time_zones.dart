@@ -2,7 +2,7 @@ import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
 
 class TimeZones {
-  TimeZones() {
+  void init() {
     tz.initializeTimeZones();
   }
 
