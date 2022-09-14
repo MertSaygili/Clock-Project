@@ -25,7 +25,7 @@ class _CustomAlarmCardState extends State<CustomAlarmCard> {
     );
 
     return Padding(
-      padding: PaddignItems().paddingCard,
+      padding: PaddingItems().paddingCard,
       child: Card(
         elevation: _elevation,
         shape: roundedRectangleBorder,
@@ -55,7 +55,7 @@ class _CardWithTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: PaddignItems().paddingInsideCard,
+      padding: PaddingItems().paddingInsideCard,
       child: Column(
         children: [
           _title(context),
@@ -87,7 +87,7 @@ class _CardWithoutTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: PaddignItems().paddingInsideCard,
+      padding: PaddingItems().paddingInsideCard,
       child: _SubBlock(subtitle: subtitle),
     );
   }

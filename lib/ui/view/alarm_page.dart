@@ -1,4 +1,6 @@
+import 'package:clock_project/service/shared/shared_manager.dart';
 import 'package:clock_project/ui/widgets/custom_alarm_card.dart';
+import 'package:clock_project/ui/widgets/custom_dialog_box.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/custom_appbar.dart';
@@ -11,8 +13,24 @@ class AlarmPageView extends StatefulWidget {
 }
 
 class _AlarmPageViewState extends State<AlarmPageView> {
+  late final SharedManager _sharedManager;
+  late final List<String> _titles;
+  late final List<String> _clocks;
   final String textUnactiveAlarm = 'Tum alarmlar kapali';
   bool isAlarmOn = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _setSharedManager();
+  }
+
+  void _setSharedManager() {
+    _sharedManager = SharedManager();
+    _sharedManager.init();
+    _titles = _sharedManager.getStringList(SharedKeys.titles);
+    _clocks = _sharedManager.getStringList(SharedKeys.clocks);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +39,7 @@ class _AlarmPageViewState extends State<AlarmPageView> {
         isScrolled: isAlarmOn,
         title: textUnactiveAlarm,
         prefferedSize: MediaQuery.of(context).size.height * 0.35,
+        addFun: _showDialog,
       ),
       body: ListView.builder(itemBuilder: (context, index) {
         return const CustomAlarmCard(
@@ -29,5 +48,13 @@ class _AlarmPageViewState extends State<AlarmPageView> {
         );
       }),
     );
+  }
+
+  void _showDialog() {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return CustomDialogs(context).clockDialog;
+        });
   }
 }

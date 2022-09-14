@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
 import '../widgets/custom_icon_button.dart';
 import '../widgets/custom_timer_appbar.dart';
-import '../widgets/custom_timercolumn.dart';
+import '../widgets/custom_timer_column.dart';
 
 class TimerPageView extends StatefulWidget {
   const TimerPageView({Key? key}) : super(key: key);

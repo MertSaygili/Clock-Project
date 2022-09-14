@@ -1,5 +1,6 @@
 // Icons
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class IconItems {
   final Icon nullIcon = const Icon(Icons.noise_control_off, size: 1);
@@ -29,7 +30,8 @@ class FontSizes {
   final double sizeMaxXX = 32;
 }
 
-class PaddignItems {
+class PaddingItems {
+  final EdgeInsets paddingZero = EdgeInsets.zero;
   final EdgeInsets paddingTopOnly = EdgeInsets.only(
     top: PaddingValues().paddingNormal,
   );
@@ -48,11 +50,41 @@ class PaddignItems {
     vertical: PaddingValues().paddingSmall,
     horizontal: PaddingValues().paddingNormal,
   );
+
+  final EdgeInsets paddingContentDialog = EdgeInsets.symmetric(
+    horizontal: PaddingValues().paddingNormal,
+  );
+
+  final EdgeInsets paddingContentTextfield = EdgeInsets.symmetric(
+    horizontal: PaddingValues().paddingVerySmall,
+    vertical: PaddingValues().paddingVerySmall,
+  );
 }
 
 class PaddingValues {
+  final double paddingVerySmall = 5;
   final double paddingSmall = 10;
   final double paddingNormal = 20;
   final double paddingMax = 30;
   final double paddingMaxXX = 60;
+}
+
+class Shapes {
+  RoundedRectangleBorder borderDialog = RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(15),
+    side: const BorderSide(
+      style: BorderStyle.solid,
+      color: Colors.black,
+      width: 1,
+    ),
+  );
+
+  OutlineInputBorder borderTextField = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10),
+      gapPadding: 0,
+      borderSide: const BorderSide(
+        style: BorderStyle.solid,
+        color: Colors.black,
+        width: 1,
+      ));
 }

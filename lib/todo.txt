@@ -22,9 +22,7 @@
     datalar kayboluyor--> uzucu
 
 
-
-
-    /// timezone iki kere cagrilmiyor
+//<!-- timezone iki kere cagrilmiyor -->//
 
 // 14.09.202 bugun yapmak istediklerim
     -> Alarm kisminda alarm ekleme isini yapacagim

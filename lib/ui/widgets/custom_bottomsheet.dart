@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
 import 'custom_dropdownbutton.dart';
 import 'custom_icon_button.dart';
+import 'custom_stack_divider.dart';
 
 class CustomSheet extends StatefulWidget {
   const CustomSheet({super.key, required this.size});
@@ -16,7 +17,6 @@ class CustomSheet extends StatefulWidget {
 }
 
 class _CustomSheetState extends State<CustomSheet> {
-  final double _sizedBoxHeight = 40;
   final String _add = 'Ekle';
   late var _location;
   String _timeZoneName = 'Africa/Abidjan';
@@ -29,7 +29,7 @@ class _CustomSheetState extends State<CustomSheet> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _stack(context),
+          const StackDivider(),
           CustomDropdownButton(fun: _setTimezone),
           _timeText(context),
           ElevatedButton(onPressed: () => _addData(), child: Text(_add)),
@@ -47,43 +47,6 @@ class _CustomSheetState extends State<CustomSheet> {
     );
   }
 
-  SizedBox _stack(BuildContext context) {
-    return SizedBox(
-      height: _sizedBoxHeight, // 40
-      child: Stack(
-        children: [
-          _customDivider(context),
-          _closeButton(),
-        ],
-      ),
-    );
-  }
-
-  Padding _customDivider(BuildContext context) {
-    double indentSize = 0.2;
-    double paddingRatio = 2.5;
-    return Padding(
-      padding: PaddignItems().paddingTopOnly / paddingRatio,
-      child: Divider(
-        color: AllColors().colorGrey,
-        thickness: 2,
-        endIndent: MediaQuery.of(context).size.width * indentSize,
-        indent: MediaQuery.of(context).size.width * (indentSize / paddingRatio),
-      ),
-    );
-  }
-
-  Positioned _closeButton() {
-    double zero = 0;
-    double height = 30;
-    return Positioned(
-      right: zero,
-      top: zero,
-      height: height,
-      child: CustomIconButton(icon: IconItems().closeIcon, fun: _closeSheet),
-    );
-  }
-
   // functions
   void _setTimezone(String timeZoneName, String time, var location) =>
       setState(() {
@@ -91,6 +54,5 @@ class _CustomSheetState extends State<CustomSheet> {
         _time = time;
         _location = location;
       });
-  void _closeSheet() => Navigator.of(context).pop<String>('');
   void _addData() => Navigator.of(context).pop<String>(_location);
 }

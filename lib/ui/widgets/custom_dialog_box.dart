@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/constants.dart';
+
 class CustomDialogs {
   final BuildContext context;
   CustomDialogs(this.context);
@@ -15,5 +17,12 @@ class CustomDialogs {
         child: const Icon(Icons.remove),
       ),
     ],
+  );
+
+  late SimpleDialog clockDialog = SimpleDialog(
+    contentPadding: PaddingItems().paddingContentDialog,
+    titlePadding: PaddingItems().paddingZero,
+    elevation: 15,
+    shape: Shapes().borderDialog,
   );
 }

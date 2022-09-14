@@ -16,7 +16,7 @@ class CustomTheme {
         style: ElevatedButton.styleFrom(
           foregroundColor: _colors.colorWhite,
           backgroundColor: _colors.colordeepPurpleAccent,
-          padding: PaddignItems().paddingButton,
+          padding: PaddingItems().paddingButton,
           minimumSize: const Size(100, 50),
           maximumSize: const Size(150, 50),
           shape: RoundedRectangleBorder(

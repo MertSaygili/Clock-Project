@@ -30,7 +30,7 @@ class _CustomClockCardState extends State<CustomClockCard> {
     );
 
     return Padding(
-      padding: PaddignItems().paddingCard,
+      padding: PaddingItems().paddingCard,
       child: Card(
         shape: roundedRectangleBorder,
         elevation: _elevation,
