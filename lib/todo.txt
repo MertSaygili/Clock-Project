@@ -25,3 +25,8 @@
 
 
     /// timezone iki kere cagrilmiyor
+
+// 14.09.202 bugun yapmak istediklerim
+    -> Alarm kisminda alarm ekleme isini yapacagim
+    -> add function
+    -> saat kisminda settings butonuyla default time'i ayarlayacagim
