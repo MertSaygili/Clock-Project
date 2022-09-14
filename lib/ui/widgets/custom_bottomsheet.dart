@@ -29,7 +29,7 @@ class _CustomSheetState extends State<CustomSheet> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const StackDivider(),
+          const CustomStackDivider(),
           CustomDropdownButton(fun: _setTimezone),
           _timeText(context),
           ElevatedButton(onPressed: () => _addData(), child: Text(_add)),

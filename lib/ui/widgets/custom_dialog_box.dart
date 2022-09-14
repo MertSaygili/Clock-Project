@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../constants/constants.dart';
+import 'custom_stack_divider.dart';
 
 class CustomDialogs {
   final BuildContext context;
@@ -23,6 +24,8 @@ class CustomDialogs {
     contentPadding: PaddingItems().paddingContentDialog,
     titlePadding: PaddingItems().paddingZero,
     elevation: 15,
+    title: const CustomStackDivider(),
     shape: Shapes().borderDialog,
+    children: const [],
   );
 }

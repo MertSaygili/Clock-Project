@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
 import 'custom_icon_button.dart';
 
-class StackDivider extends StatefulWidget {
-  const StackDivider({super.key});
+class CustomStackDivider extends StatefulWidget {
+  const CustomStackDivider({super.key});
 
   @override
-  State<StackDivider> createState() => _StackDividerState();
+  State<CustomStackDivider> createState() => _CustomStackDividerState();
 }
 
-class _StackDividerState extends State<StackDivider> {
+class _CustomStackDividerState extends State<CustomStackDivider> {
   @override
   Widget build(BuildContext context) {
     return Stack(

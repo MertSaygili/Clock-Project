@@ -53,6 +53,7 @@ class _AlarmPageViewState extends State<AlarmPageView> {
   void _showDialog() {
     showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (context) {
           return CustomDialogs(context).clockDialog;
         });
