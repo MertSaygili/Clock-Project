@@ -16,6 +16,7 @@ class _AlarmPageViewState extends State<AlarmPageView> {
   late final SharedManager _sharedManager;
   late final List<String> _titles;
   late final List<String> _clocks;
+  late String _text;
   final String textUnactiveAlarm = 'Tum alarmlar kapali';
   bool isAlarmOn = true;
 
@@ -55,7 +56,9 @@ class _AlarmPageViewState extends State<AlarmPageView> {
         context: context,
         barrierDismissible: false,
         builder: (context) {
-          return CustomDialogs(context).clockDialog;
+          return CustomDialogs(context).clockDialog(_setInput);
         });
   }
+
+  void _setInput(String value) => setState(() => _text = value);
 }

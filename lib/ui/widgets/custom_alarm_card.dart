@@ -1,5 +1,5 @@
 import 'package:clock_project/constants/constants.dart';
-import 'package:clock_project/ui/widgets/stack_button.dart';
+import 'package:clock_project/ui/widgets/custom_stack_button.dart';
 import 'package:flutter/material.dart';
 
 class CustomAlarmCard extends StatefulWidget {

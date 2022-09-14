@@ -1,3 +1,4 @@
+import 'package:clock_project/ui/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants/constants.dart';
@@ -20,12 +21,24 @@ class CustomDialogs {
     ],
   );
 
-  late SimpleDialog clockDialog = SimpleDialog(
-    contentPadding: PaddingItems().paddingContentDialog,
-    titlePadding: PaddingItems().paddingZero,
-    elevation: 15,
-    title: const CustomStackDivider(),
-    shape: Shapes().borderDialog,
-    children: const [],
-  );
+  Widget clockDialog(Function fun) {
+    return SizedBox(
+      child: SimpleDialog(
+        contentPadding: PaddingItems().paddingContentDialog,
+        titlePadding: PaddingItems().paddingDialogTitle,
+        elevation: 15,
+        title: const CustomStackDivider(),
+        shape: Shapes().borderDialog,
+        children: [
+          CustomTextField(
+            textInputType: TextInputType.text,
+            textInputAction: TextInputAction.next,
+            labelText: 'Clock title',
+            hintText: 'Clock title',
+            fun: fun,
+          )
+        ],
+      ),
+    );
+  }
 }

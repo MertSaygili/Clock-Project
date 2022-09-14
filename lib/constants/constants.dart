@@ -53,11 +53,17 @@ class PaddingItems {
 
   final EdgeInsets paddingContentDialog = EdgeInsets.symmetric(
     horizontal: PaddingValues().paddingNormal,
+    vertical: PaddingValues().paddingMax,
+  );
+
+  final EdgeInsets paddingDialogTitle = EdgeInsets.symmetric(
+    horizontal: PaddingValues().paddingVerySmall,
+    vertical: PaddingValues().paddingNormal,
   );
 
   final EdgeInsets paddingContentTextfield = EdgeInsets.symmetric(
-    horizontal: PaddingValues().paddingVerySmall,
-    vertical: PaddingValues().paddingVerySmall,
+    horizontal: PaddingValues().paddingNormal,
+    vertical: PaddingValues().paddingSmall * 1.5,
   );
 }
 
@@ -81,7 +87,7 @@ class Shapes {
 
   OutlineInputBorder borderTextField = OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
-      gapPadding: 0,
+      gapPadding: 2,
       borderSide: const BorderSide(
         style: BorderStyle.solid,
         color: Colors.black,
