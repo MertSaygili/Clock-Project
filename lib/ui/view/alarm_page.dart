@@ -65,13 +65,18 @@ class _AlarmPageViewState extends State<AlarmPageView> {
           ]);
         });
 
-    if (_text != '' && result) {
-      _clocks.add(_setTime());
-      _titles.add(_text);
+    if (result) {
+      final List<String> tempClock = _clocks;
+      tempClock.add(_setTime());
       _sharedManager.setStringList(SharedKeys.clocks, _clocks);
+
+      final List<String> tempTitles = _titles;
+      tempTitles.add(_text);
       _sharedManager.setStringList(SharedKeys.titles, _titles);
 
       _timeVal = [0, 0];
+
+      setState(() {});
     }
   }
 
