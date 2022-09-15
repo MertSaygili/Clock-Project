@@ -4,7 +4,9 @@ import 'package:clock_project/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class StackButton extends StatefulWidget {
-  const StackButton({Key? key}) : super(key: key);
+  const StackButton({Key? key, required this.fun}) : super(key: key);
+
+  final Function fun;
 
   @override
   State<StackButton> createState() => _StackButtonState();
@@ -74,11 +76,13 @@ class _StackButtonState extends State<StackButton> {
       setState(() {
         _alignment = Alignment.centerRight;
         _color = AllColors().colordeepPurpleAccent;
+        widget.fun(true);
       });
     } else {
       setState(() {
         _alignment = Alignment.centerLeft;
         _color = AllColors().colorLightGray;
+        widget.fun(false);
       });
     }
   }

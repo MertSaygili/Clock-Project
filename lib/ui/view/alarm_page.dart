@@ -1,4 +1,5 @@
 import 'package:clock_project/service/shared/shared_manager.dart';
+import 'package:clock_project/time/time.dart';
 import 'package:clock_project/ui/widgets/custom_alarm_card.dart';
 import 'package:clock_project/ui/widgets/custom_dialog_box.dart';
 import 'package:flutter/material.dart';
@@ -12,19 +13,23 @@ class AlarmPageView extends StatefulWidget {
   State<AlarmPageView> createState() => _AlarmPageViewState();
 }
 
-class _AlarmPageViewState extends State<AlarmPageView> {
+class _AlarmPageViewState extends State<AlarmPageView> with Time {
   late final SharedManager _sharedManager;
   late List<String> _titles;
   late List<String> _clocks;
   late String _text;
-  final String textUnactiveAlarm = 'Tum alarmlar kapali';
-  bool isAlarmOn = true;
+  late String _title;
+
+  final String _textUnactiveAlarm = 'Tum alarmlar kapali';
+  final bool _isAlarmOn = true;
+
   List<int> _timeVal = [0, 0];
 
   @override
   void initState() {
     super.initState();
     _setSharedManager();
+    _title = _textUnactiveAlarm;
   }
 
   void _setSharedManager() {
@@ -38,8 +43,8 @@ class _AlarmPageViewState extends State<AlarmPageView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        isScrolled: isAlarmOn,
-        title: textUnactiveAlarm,
+        isScrolled: _isAlarmOn,
+        title: _title,
         prefferedSize: MediaQuery.of(context).size.height * 0.35,
         addFun: _showDialog,
       ),
@@ -49,6 +54,7 @@ class _AlarmPageViewState extends State<AlarmPageView> {
             return CustomAlarmCard(
               title: _titles[index],
               subtitle: _clocks[index],
+              fun: _updateTitle,
             );
           }),
     );
@@ -80,6 +86,18 @@ class _AlarmPageViewState extends State<AlarmPageView> {
     }
   }
 
+  void _updateTitle(bool change) {
+    if (change) {
+      setState(() {
+        _title = 'Alarm aktif';
+      });
+    } else {
+      setState(() {
+        _title = _textUnactiveAlarm;
+      });
+    }
+  }
+
   String _setTime() {
     String clock = _timeVal[0].toString();
     String minute = _timeVal[1].toString();
@@ -106,5 +124,20 @@ class _AlarmPageViewState extends State<AlarmPageView> {
     setState(() {
       _timeVal[1] = val;
     });
+  }
+
+  @override
+  disposeTimer() {
+    throw UnimplementedError();
+  }
+
+  @override
+  setTime() {
+    throw UnimplementedError();
+  }
+
+  @override
+  updateTime() {
+    throw UnimplementedError();
   }
 }

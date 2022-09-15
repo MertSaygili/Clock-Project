@@ -1,6 +1,5 @@
 // Icons
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class IconItems {
   final Icon nullIcon = const Icon(Icons.noise_control_off, size: 1);

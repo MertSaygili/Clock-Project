@@ -3,10 +3,15 @@ import 'package:clock_project/ui/widgets/custom_stack_button.dart';
 import 'package:flutter/material.dart';
 
 class CustomAlarmCard extends StatefulWidget {
-  const CustomAlarmCard(
-      {Key? key, required this.title, required this.subtitle, this.days})
-      : super(key: key);
+  const CustomAlarmCard({
+    Key? key,
+    required this.title,
+    required this.subtitle,
+    this.days,
+    required this.fun,
+  }) : super(key: key);
 
+  final Function fun;
   final String? title;
   final String subtitle;
   final List<String>? days;
@@ -29,16 +34,23 @@ class _CustomAlarmCardState extends State<CustomAlarmCard> {
       child: Card(
         elevation: _elevation,
         shape: roundedRectangleBorder,
-        child: _checkTitle(),
+        child: _checkTitle(widget.fun),
       ),
     );
   }
 
-  Widget _checkTitle() {
+  Widget _checkTitle(Function fun) {
     if (widget.title == null) {
-      return _CardWithoutTitle(subtitle: widget.subtitle);
+      return _CardWithoutTitle(
+        subtitle: widget.subtitle,
+        fun: widget.fun,
+      );
     }
-    return _CardWithTitle(title: widget.title ?? '', subtitle: widget.subtitle);
+    return _CardWithTitle(
+      title: widget.title ?? '',
+      subtitle: widget.subtitle,
+      fun: widget.fun,
+    );
   }
 }
 
@@ -47,10 +59,12 @@ class _CardWithTitle extends StatelessWidget {
     Key? key,
     required this.title,
     required this.subtitle,
+    required this.fun,
   }) : super(key: key);
 
   final String title;
   final String subtitle;
+  final Function fun;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +73,10 @@ class _CardWithTitle extends StatelessWidget {
       child: Column(
         children: [
           _title(context),
-          _SubBlock(subtitle: subtitle),
+          _SubBlock(
+            subtitle: subtitle,
+            fun: fun,
+          ),
         ],
       ),
     );
@@ -80,15 +97,20 @@ class _CardWithoutTitle extends StatelessWidget {
   const _CardWithoutTitle({
     Key? key,
     required this.subtitle,
+    required this.fun,
   }) : super(key: key);
 
+  final Function fun;
   final String subtitle;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: PaddingItems().paddingInsideCard,
-      child: _SubBlock(subtitle: subtitle),
+      child: _SubBlock(
+        subtitle: subtitle,
+        fun: fun,
+      ),
     );
   }
 }
@@ -97,9 +119,11 @@ class _SubBlock extends StatelessWidget {
   const _SubBlock({
     Key? key,
     required this.subtitle,
+    required this.fun,
   }) : super(key: key);
 
   final String subtitle;
+  final Function fun;
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +134,7 @@ class _SubBlock extends StatelessWidget {
           subtitle,
           style: Theme.of(context).textTheme.headline1,
         ),
-        const StackButton(),
+        StackButton(fun: fun),
       ],
     );
   }
