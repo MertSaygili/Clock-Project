@@ -35,7 +35,7 @@ class CustomDialogs {
         children: [
           CustomTextField(
             textInputType: TextInputType.text,
-            textInputAction: TextInputAction.next,
+            textInputAction: TextInputAction.done,
             labelText: 'Clock title',
             hintText: 'Clock title',
             fun: funTextField,

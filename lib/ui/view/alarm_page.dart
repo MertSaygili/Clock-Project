@@ -14,12 +14,12 @@ class AlarmPageView extends StatefulWidget {
 
 class _AlarmPageViewState extends State<AlarmPageView> {
   late final SharedManager _sharedManager;
-  late final List<String> _titles;
-  late final List<String> _clocks;
+  late List<String> _titles;
+  late List<String> _clocks;
   late String _text;
   final String textUnactiveAlarm = 'Tum alarmlar kapali';
   bool isAlarmOn = true;
-  List<int> timeVal = [0, 0];
+  List<int> _timeVal = [0, 0];
 
   @override
   void initState() {
@@ -43,12 +43,14 @@ class _AlarmPageViewState extends State<AlarmPageView> {
         prefferedSize: MediaQuery.of(context).size.height * 0.35,
         addFun: _showDialog,
       ),
-      body: ListView.builder(itemBuilder: (context, index) {
-        return const CustomAlarmCard(
-          title: 'Sabah Alarmi',
-          subtitle: '18.20',
-        );
-      }),
+      body: ListView.builder(
+          itemCount: _titles.length,
+          itemBuilder: (context, index) {
+            return CustomAlarmCard(
+              title: _titles[index],
+              subtitle: _clocks[index],
+            );
+          }),
     );
   }
 
@@ -63,22 +65,41 @@ class _AlarmPageViewState extends State<AlarmPageView> {
           ]);
         });
 
-    print(result);
-    print(timeVal[0]);
-    print(timeVal[1]);
+    if (_text != '' && result) {
+      _clocks.add(_setTime());
+      _titles.add(_text);
+      _sharedManager.setStringList(SharedKeys.clocks, _clocks);
+      _sharedManager.setStringList(SharedKeys.titles, _titles);
+
+      _timeVal = [0, 0];
+    }
   }
+
+  String _setTime() {
+    String clock = _timeVal[0].toString();
+    String minute = _timeVal[1].toString();
+    if (_timeVal[0] < 10) {
+      clock = '0$clock';
+    }
+
+    if (_timeVal[1] < 10) {
+      minute = '0$minute';
+    }
+
+    return '$clock:$minute';
+  }
+
+  void _setInput(String value) => setState(() => _text = value);
 
   void setHour(int val) {
     setState(() {
-      timeVal[0] = val;
+      _timeVal[0] = val;
     });
   }
 
   void setMinute(int val) {
     setState(() {
-      timeVal[1] = val;
+      _timeVal[1] = val;
     });
   }
-
-  void _setInput(String value) => setState(() => _text = value);
 }

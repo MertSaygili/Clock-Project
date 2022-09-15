@@ -24,8 +24,6 @@ class CustomTextField extends StatefulWidget {
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-  late String text;
-
   @override
   Widget build(BuildContext context) {
     return TextFormField(
