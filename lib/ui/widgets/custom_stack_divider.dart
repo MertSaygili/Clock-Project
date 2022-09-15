@@ -46,5 +46,5 @@ class _CustomStackDividerState extends State<CustomStackDivider> {
     );
   }
 
-  void _closeSheet() => Navigator.of(context).pop<String>('');
+  void _closeSheet() => Navigator.of(context).pop<String>('false');
 }

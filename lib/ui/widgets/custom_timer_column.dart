@@ -9,8 +9,10 @@ class CustomTimerColumn extends StatefulWidget {
     required this.minValue,
     required this.maxValue,
     required this.funs,
+    this.style,
   }) : super(key: key);
 
+  final TextStyle? style;
   final List<Function> funs;
   final String text;
   final int minValue;
@@ -26,7 +28,10 @@ class _TimerColumnState extends State<CustomTimerColumn> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        CustomText(text: widget.text),
+        CustomText(
+          text: widget.text,
+          style: widget.style ?? Theme.of(context).textTheme.headline2,
+        ),
         CustomNumberPicker(
           fun: setTime,
           minValue: widget.minValue,
@@ -67,7 +72,7 @@ class CustomText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: Theme.of(context).textTheme.headline2,
+      style: style,
     );
   }
 }

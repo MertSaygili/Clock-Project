@@ -19,6 +19,7 @@ class _AlarmPageViewState extends State<AlarmPageView> {
   late String _text;
   final String textUnactiveAlarm = 'Tum alarmlar kapali';
   bool isAlarmOn = true;
+  List<int> timeVal = [0, 0];
 
   @override
   void initState() {
@@ -51,13 +52,32 @@ class _AlarmPageViewState extends State<AlarmPageView> {
     );
   }
 
-  void _showDialog() {
-    showDialog(
+  void _showDialog() async {
+    final result = await showDialog(
         context: context,
         barrierDismissible: false,
         builder: (context) {
-          return CustomDialogs(context).clockDialog(_setInput);
+          return CustomDialogs(context).clockDialog(_setInput, [
+            setHour,
+            setMinute,
+          ]);
         });
+
+    print(result);
+    print(timeVal[0]);
+    print(timeVal[1]);
+  }
+
+  void setHour(int val) {
+    setState(() {
+      timeVal[0] = val;
+    });
+  }
+
+  void setMinute(int val) {
+    setState(() {
+      timeVal[1] = val;
+    });
   }
 
   void _setInput(String value) => setState(() => _text = value);

@@ -24,6 +24,13 @@ class CustomTheme {
           ),
         ),
       ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        foregroundColor: _colors.colorWhite,
+        backgroundColor: _colors.colordeepPurpleAccent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25),
+        ),
+      ),
     );
   }
 

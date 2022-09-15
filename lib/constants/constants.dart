@@ -52,8 +52,8 @@ class PaddingItems {
   );
 
   final EdgeInsets paddingContentDialog = EdgeInsets.symmetric(
-    horizontal: PaddingValues().paddingNormal,
-    vertical: PaddingValues().paddingMax,
+    horizontal: PaddingValues().paddingMax,
+    vertical: PaddingValues().paddingNormal,
   );
 
   final EdgeInsets paddingDialogTitle = EdgeInsets.symmetric(
@@ -72,6 +72,7 @@ class PaddingValues {
   final double paddingSmall = 10;
   final double paddingNormal = 20;
   final double paddingMax = 30;
+  final double paddingMaxX = 45;
   final double paddingMaxXX = 60;
 }
 
